@@ -1,0 +1,55 @@
+body{
+    background-color:#1b4b72 !important;
+}
+
+#loginbody{
+    padding-top: 50;
+    max-width: 50rem;
+    max-height: 40rem;
+
+}
+
+#picdata{
+    width: 30%;
+}
+
+
+
+#backdrop{
+    position: fixed;
+    background-color: rgba(106, 176, 76,0.2);
+    border-radius: 5;
+    padding: 30;
+}
+#mymodalcontent{
+    max-width: 40rem;
+      min-height: 30rem;
+      margin: 10rem;
+      border-radius: 5;
+      /* padding: 30 ; */
+      background-color: whitesmoke;
+}
+
+#bglemon{
+    background: rgba(131, 241, 113, 0.57);
+
+ 
+}
+#pp{
+    max-height: 10rem;
+    width: 10rem;
+
+}
+
+#testbox{
+    background: linear-gradient(180deg, rgba(167, 243, 211, 0.78) 0%, rgba(119, 219, 177, 0.3822) 95.94%);
+
+    /* height:10rem; */
+
+}
+
+#testbox2{
+    background-color:bisque;
+    /* height:6rem; */
+
+}
