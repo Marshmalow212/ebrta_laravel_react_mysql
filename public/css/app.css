@@ -32,7 +32,7 @@ body{
 }
 
 #bglemon{
-    background: rgba(131, 241, 113, 0.57);
+    background: rgba(123, 187, 113, 0.75);
 
  
 }
@@ -43,7 +43,10 @@ body{
 }
 
 #testbox{
-    background: linear-gradient(180deg, rgba(167, 243, 211, 0.78) 0%, rgba(119, 219, 177, 0.3822) 95.94%);
+    /* background: linear-gradient(180deg, rgba(167, 243, 211, 0.78) 0%, rgba(119, 219, 177, 0.3822) 95.94%); */
+    /* background: rgba(60, 143, 109, 1); */
+    background: linear-gradient(180deg, rgba(60, 143, 109, 0.78) 0%, rgba(64, 144, 111, 0.598389) 43.8%, rgba(68, 146, 113, 0.3822) 95.94%);
+
 
     /* height:10rem; */
 
@@ -53,6 +56,15 @@ body{
     background-color:bisque;
     /* height:6rem; */
 
+}
+
+#navbarcolor{
+    background:rgba(167, 243, 238, 0.33);
+}
+
+#tabletextcolor{
+    /* color: rgba(149, 86, 211, 1); */
+    font-size:large;
 }
 @charset "UTF-8";
 /*!

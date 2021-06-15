@@ -27,3 +27,4 @@ Route::get("userdetail","App\Http\Controllers\Usercontroller@detail");
 
 Route::post("fileupload",[Filecontroller::class,'upfile']);
 Route::get("fileview",[Filecontroller::class,'viewfile']);
+Route::put('testout/{name}',[Filecontroller::class,'testupdate']); 

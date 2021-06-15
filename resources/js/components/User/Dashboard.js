@@ -97,7 +97,7 @@ class Dashboard extends Component{
                   
                 </div>           
 
-                <section id="section1"style={{paddingTop:'5rem'}}>
+                <section id="section1" style={{paddingTop:'4rem'}}>
                     <div className="container border-0 rounded" id="bglemon">
                                                            
                         <div className="row p-3">
@@ -106,12 +106,12 @@ class Dashboard extends Component{
                                 <span className="container">
                                 <img src={this.fpath} alt="test" class="rounded-circle " id="pp"/>
                                 </span>                                
-                                <div className="h3 pt-2 text-center">John</div>
+                                <div className="h3 pt-2 text-center text-light">John</div>
                             </div>
                             <div className="col-9 border-0 rounded" id="testbox">
                                 {/* second column */}
                                 
-                                <table className="table table-borderless rounded">
+                                <table className="table table-borderless rounded text-light" id="tabletextcolor">
                                     <thead>
                                         <th className="h4" colSpan="2">Details</th>
                                         <th className="h4">Status</th>
@@ -160,25 +160,86 @@ class Dashboard extends Component{
                 </section>
                 <section id="section2"  style={{paddingTop:'5rem'}}>
                 
-                <div className="container border border-success"  >
-                        <div className="card">
-                            <div className="card-header bg-warning text-dark">Section 2</div>
-                            <div  className="card-body">
+                <div className="container border-0 rounded" id="bglemon">
+                                                           
+                        <div className="row p-3">
+                            
+                            <div className="col-12 border-0 rounded" id="testbox">
+                                {/* second column */}
+                                
+                                <table className="table table-hover table-borderless rounded text-light" id="tabletextcolor">
+                                    <thead>
+                                        <th className="h4 text-center border" colSpan="5">Registration Record</th>
+                                        
+                                    </thead>
+                                    <thead className="h5">
+                                        <th >Name</th>
+                                        <th>Issued</th>
+                                        <th>Expires</th>
+                                        <th>Renewal</th>   
+                                        <th>Remarks</th>  
+                                        
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Data</td>
+                                            <td>Data</td>
+                                            <td>Data</td>
+                                            <td>Data</td>
+                                            <td>Data</td>
+                                         
+                                        </tr>
+                                    </tbody>
+
+                                </table>
                                 
                             </div>
-                        </div>
-                    </div>                    
+                            
+                        </div>  
+                           
+                    </div>                 
 
                 </section>
-                <section id="section3" style={{paddingTop:'5rem'}}>
-                <div className="container border border-success"  >
-                        <div className="card">
-                            <div className="card-header bg-success text-dark">Section 3</div>
-                            <div  className="card-body">
+                <section id="section3" className="pb-5" style={{paddingTop:'5rem'}}>
+                
+                <div className="container border-0 rounded" id="bglemon">
+                                                           
+                        <div className="row p-3">
+                            
+                            <div className="col-12 border-0 rounded" id="testbox">
+                                {/* second column */}
+                                
+                                <table className="table table-hover table-borderless rounded text-light" id="tabletextcolor">
+                                    <thead>
+                                        <th className="h4 text-center" colSpan="5">Registration Details</th>
+                                        
+                                    </thead>
+                                    <thead>
+                                        <th >Name</th>
+                                        <th>Reg No.</th>
+                                        <th>License No.</th>
+                                        <th>Action</th>   
+                                        <th>Remarks</th>  
+                                        
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Data</td>
+                                            <td>Data</td>
+                                            <td>Data</td>
+                                            <td>Data</td>
+                                            <td>Data</td>
+                                         
+                                        </tr>
+                                    </tbody>
+
+                                </table>
                                 
                             </div>
-                        </div>
-                    </div>
+                            
+                        </div>  
+                           
+                    </div>    
                 </section>
 
 

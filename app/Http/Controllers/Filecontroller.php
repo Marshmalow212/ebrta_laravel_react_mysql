@@ -53,5 +53,15 @@ class Filecontroller extends Controller
 
         }
 
+        public function testupdate(Request $request,$name){
+            if($name == 'erfan'){
+                return response()->json(['message'=>'This is erfan','arr'=>$request->all()]);
+            }
+            else{
+                return response()->json(['message'=>'no parameters','arr'=>$request->all()]);
+            }
+        }
+
+
        
 }

@@ -11,6 +11,7 @@ class Fileup extends Component{
             image:'',
             raw:'',
             retfile:'',
+            take:'',
         }
 
         var data;
@@ -18,7 +19,38 @@ class Fileup extends Component{
 
         this.hFile = this.hFile.bind(this);
         this.inFile = this.inFile.bind(this);
+        this.takein = this.takein.bind(this);
+        this.sendd = this.sendd.bind(this);
         
+    }
+
+    takein(e){
+        this.setState(
+            {
+                [e.target.name]:e.target.value
+            }
+        );
+
+    }
+    sendd(e){
+        e.preventDefault()
+
+
+
+        const datatake = {
+            take:this.state.take
+        }
+
+        console.log(datatake);
+        const name = 'erfan'
+
+        axios.put('http://localhost:8000/api/testout/'+ name,datatake).
+        then((res)=>{
+            console.log(res.data);
+        }
+
+        );
+
     }
 
     inFile(e){        
@@ -82,7 +114,12 @@ class Fileup extends Component{
 
                 </form>
 
-                <img src={this.retfile} id="picdata"/>
+                {/* <img src="storage/img/mask.jpg" id="picdata"/> */}
+
+                <div className="container bg-light">
+                    <span><input name="take" type="text" onChange={this.takein} /> <br/>
+                    <input className="btn btn-success btn-small" type="submit" onClick={this.sendd}/></span>
+                </div>
 
             </div>
         );

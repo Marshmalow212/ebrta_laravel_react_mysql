@@ -33,7 +33,7 @@ class Navbar extends Component{
 
         let homepage,dashboardpage;
         homepage=(<>
-            <li className="nav-item mr-0" style={{marginLeft:'30rem'}}>
+            <li className="nav-item mr-0">
                             <a type="button" className="nav-link text-light" onClick={this.hLB} >Login</a>
                             </li>
                             <li className="nav-item mr-0 text-light nav-link">|</li>
@@ -58,7 +58,7 @@ class Navbar extends Component{
 
         return(
 
-            <div className="navbar navbar-default navbar-collapse navbar-expand-lg navbar-light bg-dark fixed-top justify-content-between" id="">
+            <div className="navbar navbar-default navbar-collapse navbar-expand-lg navbar-light fixed-top justify-content-between" id="navbarcolor">
                     <ul className="navbar-nav">
                        
                             <li className="nav-item mr-2"><a className="nav-link text-light"href="#">Home</a></li>
