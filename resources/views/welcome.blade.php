@@ -15,9 +15,9 @@
         <script src="https://kit.fontawesome.com/043071f853.js" crossorigin="anonymous"></script>
 
     </head>
-    <body class="antialiased">
+    <body class="antialiased" id="index">
         <!-- <div id="example"></div> -->
-        <div id="index"></div>
+        <div  ></div>
 
         <script src="{{ asset('js/app.js')}}"></script>
     </body>

@@ -7,7 +7,6 @@ import Reg from './../User/Reg';
 class Textin extends Component{
     constructor(props) {
         super(props);
-        let show = JSON.parse(localStorage.getItem('textshow'));
        this.state={ 
            show:true,
            send:true
@@ -18,8 +17,9 @@ class Textin extends Component{
     closeMod(e){
         e.preventDefault();
 
-        this.setState({ show:!this.state.show });
-        this.setState({ show:!this.state.show });       
+        this.setState({ show:!this.state.show });    
+        // window.open('/register','_self') ;
+        window.open('/','_self') ;
     }
     
 
@@ -66,13 +66,14 @@ class Textin extends Component{
     let regmodal = (
         <form className="form text-light"  onSubmit={this.handleSubmit} encType="multipart/form-data">
             <span>
-                <label className="form-group">First Name <input name="first_name" className="form-control" type="text" onChange={this.hField}  value={this.state.first_name}/> </label>
-            </span>
+                <label className="form-group mr-2">First Name <input name="first_name" className="form-control" type="text" onChange={this.hField}  value={this.state.first_name}/> </label>
+            
+                                    
+                                    <label className="form-group">Last Name <input name="last_name" className="form-control" type="text" onChange={this.hField}  value={this.state.last_name}/></label>
+                                    </span>
+                                     <br />
+                                    <label className="form-group" >NIID  <input name="niid" className="form-control" type="text" onChange={this.hField}  value={this.state.niid}required /></label>
                                     <br />
-                                    <label className="form-group">Last Name </label>
-                                    <input name="last_name" className="form-control" type="text" onChange={this.hField}  value={this.state.last_name}/> <br />
-                                    <label className="form-group" >NIID </label>
-                                    <input name="niid" className="form-control" type="text" onChange={this.hField}  value={this.state.niid}required /> <br />
                                     <label className="form-group">Phone </label>
                                     <input name ="phone" className="form-control" type="text" onChange={this.hField}  value={this.state.phone}required /> <br />
                                     <label className="form-group">Email </label>
@@ -94,9 +95,12 @@ class Textin extends Component{
     )
         return(
            <>
-               <Modal isOpen={this.state.show} size="lg">
-                   <ModalHeader className="bg-success">
-                        <h1 >Edit Profile</h1>
+               <Modal isOpen={this.state.show} >
+                   <ModalHeader className="bg-success justify-content-between">
+                   
+                        
+                        
+                        <div ><h1 ><a type="button" className="mr-2 text-light" style={{textDecoration:'none'}} onClick={this.closeMod}>&times;</a>Edit Profile </h1></div>
                    </ModalHeader>
                    <ModalBody className="bg-primary">
                         {regmodal}    

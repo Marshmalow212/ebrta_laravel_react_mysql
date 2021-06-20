@@ -87,7 +87,7 @@ class Dashboard extends Component{
     render(){
         return (
             
-            <div className="container" href="#" >
+            <div className="container" href="#" id="boxsizebody" >
                 <Navbar page="dashboard"/>                
               
                 
@@ -98,7 +98,7 @@ class Dashboard extends Component{
                 </div>           
 
                 <section id="section1" style={{paddingTop:'4rem'}}>
-                    <div className="container border-0 rounded" id="bglemon">
+                    <div className="container border-0 rounded" id="bglemon" >
                                                            
                         <div className="row p-3">
                             <div className="col-2 border-0 rounded d-flex justify-content-center" id="">
@@ -121,7 +121,7 @@ class Dashboard extends Component{
                             <div className="col-1 ">
 
                             </div>
-                            <div className="col-8 border-0 rounded" id="testbox">
+                            <div className="col-9 border-0 rounded" id="testbox">
                                 {/* second column */}
                                 
                                 <table className="table table-borderless rounded text-light" id="tabletextcolor">
@@ -224,7 +224,7 @@ class Dashboard extends Component{
                                 
                                 <table className="table table-hover table-borderless rounded text-light" id="tabletextcolor">
                                     <thead>
-                                        <th className="h4 text-center" colSpan="5">Registration Details</th>
+                                        <th className="h4 text-center border" colSpan="5">Registration Details</th>
                                         
                                     </thead>
                                     <thead>

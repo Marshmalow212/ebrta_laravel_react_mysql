@@ -44,7 +44,7 @@ class Home extends Component{
                 <div className="container mt-5 p-2 border border-warning">
                 <h1 className="text-light">Home Page</h1>
                 <button type="button" className="btn btn-danger btn-lg" onClick={this.hA}>LoginModal</button>
-                {this.state.isopen?loginmod:""}
+                {/* {this.state.isopen?loginmod:""} */}
                 </div>
 
                 

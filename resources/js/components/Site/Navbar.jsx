@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import Textin from './../Templates/Textin';
+import LoginModal from './../User/LoginModal';
 
 class Navbar extends Component{
     constructor(props){
@@ -9,6 +11,10 @@ class Navbar extends Component{
         
         this.uname = uData.first_name;
         console.log(this.uname);
+    }
+    this.state = {
+        showlogin:false,
+        showreg:false
     }
         console.log(this.props.page);
 
@@ -22,25 +28,31 @@ class Navbar extends Component{
         e.preventDefault();
         let trig = {'stat':true}
         localStorage.setItem('loginpage',JSON.stringify(trig));
-        window.open('/','_self');
+            this.setState({ showlogin:!this.state.showlogin  });
+        // window.open('/','_self');
     }
 
     hSB(e){
+        e.preventDefault();
+
+        this.setState({ showreg: !this.state.showreg  });
 
     }
 
     render(){
 
         let homepage,dashboardpage;
-        homepage=(<>
+        homepage=(
+        <>
             <li className="nav-item mr-0">
-                            <a type="button" className="nav-link text-light" onClick={this.hLB} >Login</a>
-                            </li>
-                            <li className="nav-item mr-0 text-light nav-link">|</li>
-                            <li className="nav-item mr-0">
-                                <Link to="/register"  className="nav-link text-light">Sign up</Link>
-                            </li>
-                            </>
+                    <a type="button" className="nav-link text-light" onClick={this.hLB} >Login</a>
+            </li>
+            <li className="nav-item mr-0 text-light nav-link">|</li>
+            <li className="nav-item mr-0">
+                {/* <Link to="/register"  className="nav-link text-light">Sign up</Link> */}
+                <a type="button" className="nav-link text-light" onClick={this.hSB} >Register</a>
+            </li>
+        </>
         );
 
         dashboardpage=(
@@ -57,21 +69,31 @@ class Navbar extends Component{
         );
 
         return(
+            <>
+            <div className="navbar navbar-expand-lg  navbar-light fixed-top "  id="navbarcolor">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#togglenavbar" aria-expanded='false'>
+    <span class="navbar-toggler-icon"></span>
+  </button>
+                <div className="collapse navbar-collapse justify-content-between" id="togglenavbar" >
+                    <ul className="navbar-nav">
+                        
+                        <li className="nav-item mr-2"><a className="nav-link text-light"href="#">Home</a></li>
+                    <li className="nav-item mr-2"><a className="nav-link text-light"href="#section1">Services</a></li>
+                    <li className="nav-item mr-2"><a className="nav-link text-light"href="#section2">Press Release</a></li>
+                    <li className="nav-item mr-2"><a className="nav-link text-light"href="#section3">Contacts</a></li>
+                    
+                </ul>
+                <ul className="navbar-nav">
+                {this.props.page==='dashboard'?dashboardpage:homepage}
+                </ul>
+                            
+           </div >
 
-            <div className="navbar navbar-default navbar-collapse navbar-expand-lg navbar-light fixed-top justify-content-between" id="navbarcolor">
-                    <ul className="navbar-nav">
-                       
-                            <li className="nav-item mr-2"><a className="nav-link text-light"href="#">Home</a></li>
-                        <li className="nav-item mr-2"><a className="nav-link text-light"href="#section1">Services</a></li>
-                        <li className="nav-item mr-2"><a className="nav-link text-light"href="#section2">Press Release</a></li>
-                        <li className="nav-item mr-2"><a className="nav-link text-light"href="#section3">Contacts</a></li>
-                      
-                    </ul>
-                    <ul className="navbar-nav">
-                    {this.props.page==='dashboard'?dashboardpage:homepage}
-                    </ul>
-                                 
-                </div >
+                </div>
+                    
+                {this.state.showlogin?<LoginModal />:""}
+                {this.state.showreg?<Textin />:""}
+                </>
         );
     }
 }

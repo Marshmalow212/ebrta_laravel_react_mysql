@@ -2,8 +2,7 @@ import axios from 'axios';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Link,Route,useHistory,Switch} from 'react-router-dom';
-import Modal from 'react-modal';
-import {ModalBody,ModalHeader,ModalFooter} from 'reactstrap';
+import {Modal,ModalBody,ModalHeader,ModalFooter} from 'reactstrap';
 import Login from './Login';
 import Home from './../Site/Home';
 
@@ -12,7 +11,7 @@ class LoginModal extends Component{
     constructor(props){
         super(props);
         this.state={
-            show:this.props.stat
+            show:true
         };
 
         this.hO = this.hO.bind(this);
@@ -31,13 +30,13 @@ class LoginModal extends Component{
         // this.props.stat = false;
 
         this.setState({
-            show:false
+            show: !this.state.show
         });
-    //    window.open("/home","_self");
-    localStorage.setItem("loginpage",JSON.stringify({'stat':false}));
-    return(
-        <Home stat="false" />
-    )
+       window.open("/","_self");
+    // localStorage.setItem("loginpage",JSON.stringify({'stat':false}));
+    // return(
+    //     <Home stat="false" />
+    // )
     }
 
     render(){
@@ -55,13 +54,25 @@ class LoginModal extends Component{
             </>
         );
 
+        let testModalr = (
+            <Modal isOpen={this.state.show} size='lg'>
+                <ModalBody className="bg-transparent">
+                <div className="bg-transparent" ><a type="button" className="close" onClick={this.hC}>&times;</a></div>
+                        <Login />
+
+                </ModalBody>
+                
+            </Modal>
+        )
+
         return(
 
           <>
                 
                 {/* <button type="button" className="btn btn-danger" onClick={this.hO}>Test Modal</button> */}
 
-                {this.state.show?mytestmodal:""}                  
+                {/* {this.state.show?mytestmodal:""}                   */}
+                {testModalr}
                 </>
           
         );

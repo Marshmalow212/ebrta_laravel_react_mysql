@@ -82,11 +82,13 @@ class Fileup extends Component{
         const dataA = new FormData();
         dataA.append("files",this.state.image);
         dataA.append("fileraw",this.state.raw[0]);
-        // let A = {
-        //     'files':this.state.image,
-        //     'fileraw':this.state.raw[0]
+        console.log(dataA.get('fileraw'));
+        // let bA = {
+        //     files:this.state.image,
+        //     fileraw:this.state.raw[0]
         // }
-        // const dataA = new FormData(A);
+        // const A = new FormData(bA); 
+        
     
         
         axios.post('http://localhost:8000/api/fileupload',dataA)
