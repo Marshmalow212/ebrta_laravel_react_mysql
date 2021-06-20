@@ -66,6 +66,15 @@ body{
     /* color: rgba(149, 86, 211, 1); */
     font-size:large;
 }
+.overlay {
+    
+    opacity: .5;
+    transition: .3s ease;
+    background: color 0;
+  }
+  #ppedit:hover .overlay {
+    opacity: 1;
+  }
 @charset "UTF-8";
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)

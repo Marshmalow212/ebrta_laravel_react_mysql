@@ -101,14 +101,27 @@ class Dashboard extends Component{
                     <div className="container border-0 rounded" id="bglemon">
                                                            
                         <div className="row p-3">
-                            <div className="col-3 border-0 rounded " id="">
+                            <div className="col-2 border-0 rounded d-flex justify-content-center" id="">
                                 {/* first colum */}
-                                <span className="container">
+                                <ul>
+                                <span className="container" id="ppedit" >
                                 <img src={this.fpath} alt="test" class="rounded-circle " id="pp"/>
+                                <div className="overlay">
+                                <a href="#edit" className="icon text-light" style={{textDecoration:'none'}} ><i className="fas fa-edit fa-lg float-left " style={{color:'white'}} alt="Photo Change"> </i>Change Photo</a>
+                                </div>
+                                {/* <a href="#edit" className="icon" ><i className="fas fa-edit fa-lg float-left " style={{color:'white'}}> </i></a> */}
                                 </span>                                
                                 <div className="h3 pt-2 text-center text-light">John</div>
+                                <div className="h5 pt-2 text-center text-light"><a href="#editprofile" className="text-light" style={{textDecoration:'none'}}>Edit profile</a></div>
+                                
+
+                                </ul>
+                                
                             </div>
-                            <div className="col-9 border-0 rounded" id="testbox">
+                            <div className="col-1 ">
+
+                            </div>
+                            <div className="col-8 border-0 rounded" id="testbox">
                                 {/* second column */}
                                 
                                 <table className="table table-borderless rounded text-light" id="tabletextcolor">

@@ -28,12 +28,16 @@ class LoginModal extends Component{
 
     hC(e){
         e.preventDefault();
+        // this.props.stat = false;
 
         this.setState({
             show:false
         });
     //    window.open("/home","_self");
     localStorage.setItem("loginpage",JSON.stringify({'stat':false}));
+    return(
+        <Home stat="false" />
+    )
     }
 
     render(){

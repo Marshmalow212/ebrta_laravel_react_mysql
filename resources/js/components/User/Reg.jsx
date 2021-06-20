@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import {Link,Route,browserHistory} from 'react-router-dom';
+import Textin,{closeMod} from './../Templates/Textin'
+import { delay } from 'lodash';
 
 
 class Reg extends Component{
@@ -18,16 +20,27 @@ class Reg extends Component{
             con_pass:'',
             message:'',
             status:false,
-            prev:''
+            prev:'',
+            tgl:false
         };
-
+        console.log();
         var dataPath = "";
         var picdata = "";
+        this.tgl = false;
 
         this.handleSubmit=this.handleSubmit.bind(this);
         this.hField=this.hField.bind(this);
         this.hFile = this.hFile.bind(this);
         this.inFile = React.createRef();
+        this.tbM = this.tbM.bind(this);
+        
+    }
+
+    tbM(e){
+        e.preventDefault();
+       this.setState({ tgl:!this.state.tgl });
+    //    this.state.tgl?this.setState({ tgl: !this.state.tgl  }):"";
+       console.log(this.state.tgl);
     }
 
     hFile(e){
@@ -113,9 +126,11 @@ class Reg extends Component{
 
 
     render(){    
+        
 
         return (
             <div className="container">
+               
                 {this.state.status?<div className="alert alert-success alert-dismissible float-top">
                         {this.state.message}<a  className="close" data-dismiss="alert" >&times;</a>
                     </div>:""}
@@ -123,7 +138,7 @@ class Reg extends Component{
                 <div className="container mb-4 ">
                 
                         <div className="card">
-                            <div className="card-header bg-primary text-light">User Registration</div>
+                           <div className="card-header bg-primary text-light">User Registration</div>
                             <div  className="card-body bg-dark" >
                                 <div className="container" id="picdata" >
                                     <img src={this.picdata} alt={this.picdata}/>
@@ -157,7 +172,23 @@ class Reg extends Component{
                                 
                             </div>
                         </div>
+                </div>
+                    <div className="container p-3">
+                    <div className="row p-3 bg-light">
+                        <div className="col-mb-4 ">
+                            {/* 1st row */}
+                            <button className="btn btn-success" onClick={this.tbM}>Toggle</button>
+                        </div>
+
+                       
+                                         
+
                     </div>
+                    {this.state.tgl?<Textin />:""}
+                    </div>
+
+                    
+                    
 
             </div>            
         );
