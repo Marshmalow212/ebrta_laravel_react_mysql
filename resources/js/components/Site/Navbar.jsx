@@ -77,8 +77,15 @@ class Navbar extends Component{
                 <div className="collapse navbar-collapse justify-content-between" id="togglenavbar" >
                     <ul className="navbar-nav">
                         
-                        <li className="nav-item mr-2"><a className="nav-link text-light"href="#">Home</a></li>
-                    <li className="nav-item mr-2"><a className="nav-link text-light"href="#section1">Services</a></li>
+                        <li className="nav-item mr-2"><a className="nav-link text-light"href="/">Home</a></li>
+                    <li className="nav-item mr-2 dropdown"><a className="nav-link text-light dropdown-toggle "href="#" role="button" data-toggle="dropdown" aria-expanded="false">Services</a>
+                    <div class="dropdown-menu bg-info " aria-labelledby="navbarDarkDropdownMenuLink">
+          <a class="dropdown-item " href="/vehiclereg">Vehicle Registration</a>
+          <a class="dropdown-item " href="/drivinglicense">Driving License</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item " href="/renewal">Renewal</a>
+        </div>
+                    </li>
                     <li className="nav-item mr-2"><a className="nav-link text-light"href="#section2">Press Release</a></li>
                     <li className="nav-item mr-2"><a className="nav-link text-light"href="#section3">Contacts</a></li>
                     

@@ -8,6 +8,9 @@ import Dashboard from './components/User/Dashboard';
 import LoginModal from './components/User/LoginModal';
 import Fileup from './components/Site/fileup';
 import Textin from './components/Templates/Textin';
+import Dlic from './components/Site/drivlic';
+import Vreg from './components/Site/vreg';
+import Renewal from './components/Site/renewal';
 
 
 const Main = props =>(
@@ -26,6 +29,9 @@ const Main = props =>(
 
         <Route  exact path='/textin' component={Textin}/>        
 
+        <Route exact path='/vehiclereg' component={Vreg}></Route>        
+        <Route exact path='/drivinglicense' component={Dlic}></Route>
+        <Route exact path='/renewal' component={Renewal} ></Route>
         
     </Switch>
 );

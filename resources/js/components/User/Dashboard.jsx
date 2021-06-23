@@ -87,7 +87,7 @@ class Dashboard extends Component{
     render(){
         return (
             
-            <div className="container" href="#" id="boxsizebody" >
+           <>
                 <Navbar page="dashboard"/>                
               
                 
@@ -97,11 +97,11 @@ class Dashboard extends Component{
                   
                 </div>           
 
-                <section id="section1" style={{paddingTop:'4rem'}}>
-                    <div className="container border-0 rounded" id="bglemon" >
+                <section id="section1" className="px-3" style={{paddingTop:'4rem'}}>
+                    <div className=" border-0 rounded" id="bglemon" >
                                                            
-                        <div className="row p-3">
-                            <div className="col-2 border-0 rounded d-flex justify-content-center" id="">
+                        <div className="row p-3 ">
+                            <div className="col-sm-3 border-0 rounded d-flex justify-content-center" id="">
                                 {/* first colum */}
                                 <ul>
                                 <span className="container" id="ppedit" >
@@ -118,13 +118,13 @@ class Dashboard extends Component{
                                 </ul>
                                 
                             </div>
-                            <div className="col-1 ">
+                            
 
-                            </div>
-                            <div className="col-9 border-0 rounded" id="testbox">
+                            
+                            <div className="col-sm-9 border-0 rounded" id="testbox">
                                 {/* second column */}
                                 
-                                <table className="table table-borderless rounded text-light" id="tabletextcolor">
+                                <table className="table table-borderless rounded text-light property-inline" id="tabletextcolor">
                                     <thead>
                                         <th className="h4" colSpan="2">Details</th>
                                         <th className="h4">Status</th>
@@ -171,13 +171,14 @@ class Dashboard extends Component{
                     </div>
 
                 </section>
-                <section id="section2"  style={{paddingTop:'5rem'}}>
+                <section id="section2" className="pt-4 px-3" >
+                    {/* registration record */}
                 
-                <div className="container border-0 rounded" id="bglemon">
+                <div className=" border-0 rounded" id="bglemon">
                                                            
                         <div className="row p-3">
                             
-                            <div className="col-12 border-0 rounded" id="testbox">
+                            <div className="col-sm-12 border-0 rounded" id="testbox">
                                 {/* second column */}
                                 
                                 <table className="table table-hover table-borderless rounded text-light" id="tabletextcolor">
@@ -213,18 +214,18 @@ class Dashboard extends Component{
                     </div>                 
 
                 </section>
-                <section id="section3" className="pb-5" style={{paddingTop:'5rem'}}>
-                
-                <div className="container border-0 rounded" id="bglemon">
+                <section id="section3" className="py-4 px-3">
+                {/* registration data */}
+                <div className=" border-0 rounded" id="bglemon">
                                                            
                         <div className="row p-3">
                             
-                            <div className="col-12 border-0 rounded" id="testbox">
+                            <div className="col-sm-12 border-0 rounded" id="testbox">
                                 {/* second column */}
                                 
                                 <table className="table table-hover table-borderless rounded text-light" id="tabletextcolor">
                                     <thead>
-                                        <th className="h4 text-center border" colSpan="5">Registration Details</th>
+                                        <th className="h4 text-center border" colSpan="5">Registration Data</th>
                                         
                                     </thead>
                                     <thead>
@@ -240,7 +241,7 @@ class Dashboard extends Component{
                                             <td>Data</td>
                                             <td>Data</td>
                                             <td>Data</td>
-                                            <td>Data</td>
+                                            <td><a className="text-light" href={this.fpath} download style={{textDecoration:'none'}}><span><i class="far fa-file fa-sm mr-2"></i>Data</span></a></td>
                                             <td>Data</td>
                                          
                                         </tr>
@@ -258,7 +259,7 @@ class Dashboard extends Component{
 
                 
 
-            </div>            
+            </>            
         );
 
     }
