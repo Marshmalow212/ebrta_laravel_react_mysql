@@ -17,6 +17,8 @@ class UserReg extends Model
         'phone',
         'email',
         'password',
+        'address',
+        'propic'
 
     ];
 }

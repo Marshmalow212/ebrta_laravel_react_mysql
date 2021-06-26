@@ -23,12 +23,19 @@ body{
     padding: 30;
 }
 #mymodalcontent{
-    max-width: 40rem;
-      min-height: 30rem;
-      margin: 10rem;
+    /* max-width: 40rem;
+      min-height: 30rem; */
+      /* margin: 10rem; */
       border-radius: 5;
       /* padding: 30 ; */
-      background-color: whitesmoke;
+      /* background-color: whitesmoke; */
+}
+#loginmodalbg{
+    background-color:rgb(13, 75, 51);
+    
+}
+.loginmodal{
+    width: 100%;
 }
 
 #bglemon{
@@ -37,7 +44,7 @@ body{
  
 }
 #pp{
-    max-height: 10rem;
+    height: 10rem;
     width: 10rem;
 
 }

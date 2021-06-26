@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Link,Route,BrowserRouter,useHistory} from 'react-router-dom';
 import Navbar from './../Site/Navbar';
+import Textin from '../Templates/Textin';
 
 class Dashboard extends Component{
     
@@ -27,18 +28,24 @@ class Dashboard extends Component{
             email:uData.email,
             submitted:false,
             alerting:false,
+            edit:false,
             record:[],
             info:[]
         };
 
-        this.fpath = "/storage/img/Sami.jpg";
+        this.fpath = uData.propic;
         
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onFocusHandle = this.onFocusHandle.bind(this);
-       
+        this.editprofile = this.editprofile.bind(this);       
         
+    }
+
+    editprofile(e){
+        e.preventDefault();
+        this.setState({ edit: !this.state.edit });
     }
 
     componentDidMount() {
@@ -131,14 +138,14 @@ class Dashboard extends Component{
                                 {/* first colum */}
                                 <ul>
                                 <span className="container" id="ppedit" >
-                                <img src={this.fpath} alt="test" class="rounded-circle " id="pp"/>
+                                <img src={this.fpath} alt="test" className="rounded-circle " id="pp"/>
                                 <div className="overlay">
                                 <a href="#edit" className="icon text-light" style={{textDecoration:'none'}} ><i className="fas fa-edit fa-lg float-left " style={{color:'white'}} alt="Photo Change"> </i>Change Photo</a>
                                 </div>
                                 {/* <a href="#edit" className="icon" ><i className="fas fa-edit fa-lg float-left " style={{color:'white'}}> </i></a> */}
                                 </span>                                
                                 <div className="h3 pt-2 text-center text-light">{this.state.username}</div>
-                                <div className="h5 pt-2 text-center text-light"><a href="#editprofile" className="text-light" style={{textDecoration:'none'}}>Edit profile</a></div>
+                                <div className="h5 pt-2 text-center text-light"><a  role="button" onClick={this.editprofile} className="text-light" style={{textDecoration:'none'}}>Edit profile</a></div>
                                 
 
                                 </ul>
@@ -283,7 +290,7 @@ class Dashboard extends Component{
                                             <td>{d.user_reg_id}</td>
                                             <td>{d.regno}</td>
                                             <td>{d.licno}</td>
-                                            <td><a className="text-light" href={d.file} download style={{textDecoration:'none'}}><span><i class="far fa-file fa-sm mr-2"></i>{d.licno}</span></a></td>
+                                            <td><a className="text-light" href={d.file} download style={{textDecoration:'none'}}><span><i className="far fa-file fa-sm mr-2"></i>{d.licno}</span></a></td>
                                             <td>{d.remarks}</td>
                                         </tr>           
                                         )
@@ -308,7 +315,7 @@ class Dashboard extends Component{
                     </div>    
                 </section>
 
-
+                {this.state.edit?(<Textin page="profile" id={this.state.id}/> ):""}
                 
 
             </>            

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UserReg;
+use App\Models\Userrequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 
@@ -38,9 +39,9 @@ class Usercontroller extends Controller
         }
     }
 
-    public function detail(){
+    public function getu($id){
 
-        $userData = UserReg::all();
+        $userData = UserReg::find($id);
 
 
         return response()->json(['message'=>'User found','data'=>$userData]);
@@ -67,18 +68,39 @@ class Usercontroller extends Controller
     {
         //
 
-        $data = new UserReg([
-            "first_name"=> $request->get('first_name'),
-            "last_name"=> $request->get('last_name'),
-            "niid" => $request->get('niid'),
-            "phone" => $request->get('phone'),
-            "email" => $request->get('email'),
-            "password"=> $request->get('password')
+        // $data = new UserReg([
+        //     "first_name"=> $request->get('first_name'),
+        //     "last_name"=> $request->get('last_name'),
+        //     "niid" => $request->get('niid'),
+        //     "phone" => $request->get('phone'),
+        //     "email" => $request->get('email'),
+        //     "password"=> $request->get('password')
     
-        ]);
+        // ]);
+        $filepath = '';
+        $file = $request->file('propic');
+        if(!is_null($file)){
+            $filename = $file->getClientOriginalName();
+            $fileexten = $file->getClientOriginalExtension();
+            // $filepath = $file->path();
+
+            $filerename = ($request->get('first_name')).'_'.($request->get('niid'));
+            $filepath = '/storage/img/profile/';
+            $filesave = $file->storeAs('/public/img/profile/',$filerename);
+            $filepath = $filepath . $filerename;
+
+        }else{
+            $fdata='no file found!';
+        }
+
+       
+
+        $dataob = $request->except(['propic','con_pass']);
+        $data = new UserReg($dataob);
+        $data->propic = $filepath;
         $data->save();
 
-        return response()->json(['message'=>'Registration Successful','data'=>$data]);
+        return response()->json(['message'=>'Registration Successful','data'=>$data,'file'=>$filepath]);
     }
 
     /**
@@ -113,6 +135,13 @@ class Usercontroller extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = UserReg::find($id);
+        $data->address = $request->get('address');
+        $data->phone = $request->get('phone');
+        $data->save();
+
+        return response()->json(['message'=>'Data Updated!','data'=>$data]);
+
     }
 
     /**

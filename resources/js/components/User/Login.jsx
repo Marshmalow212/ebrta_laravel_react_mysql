@@ -92,13 +92,8 @@ class Login extends Component{
                  {this.state.message}<a  className="close" data-dismiss="alert" onClick={this.hStat} >&times;</a>
              </div>
                 );
-
-
-        return (
-            <div className="container" id="loginbody">
-                {this.state.loginstat?alertD :"" }
-                <div className="container mb-5 d-flex justify-content-center "  >
-                        <div className="card " style={{width:"50%",}}>
+            let loginform = (
+                <div className="card ">
                             <div className="card-header text-light" style={{backgroundColor:"teal"}}>Log In</div>
                             <div className="card-body" style={{backgroundColor:"teal"}}>
                                 <form className="form text-light" onSubmit={this.hSubmit}>
@@ -110,15 +105,28 @@ class Login extends Component{
                                     <br />
                                     
                                     <button type="submit" className="btn btn-success btn-block ">Login</button><br/>
-                                    <Link to="/register" className="btn btn-secondary text-light text-decoration-none">Sign up</Link>
+                                    <Link to="/textin" className="btn btn-secondary text-light text-decoration-none">Sign up</Link>
 
                                 </form>
                                 
                             </div>
                         </div>
+
+            );
+
+
+        return (
+            <>
+             {this.state.loginstat?alertD :"" }
+             {loginform}
+            {/* <div className="" id="">
+               
+                <div className="bg-transparent mb-5 d-flex justify-content-center "  >
+                        
                     </div>
 
-            </div>            
+            </div>           */}
+            </>  
         );
 
     }

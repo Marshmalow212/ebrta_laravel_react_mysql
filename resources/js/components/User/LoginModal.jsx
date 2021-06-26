@@ -55,12 +55,12 @@ class LoginModal extends Component{
         );
 
         let testModalr = (
-            <Modal isOpen={this.state.show} size='lg'>
-                <ModalBody className="bg-transparent">
-                <div className="bg-transparent" ><a type="button" className="close" onClick={this.hC}>&times;</a></div>
+            <Modal isOpen={this.state.show} size='md'>
+                
+                <div className="loginmodal" id="loginmodalbg"><a type="button" className="close text-light" id="loginmodalbg" onClick={this.hC}>&times;</a></div>
                         <Login />
 
-                </ModalBody>
+               
                 
             </Modal>
         )

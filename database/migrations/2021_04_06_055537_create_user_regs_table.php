@@ -21,6 +21,8 @@ class CreateUserRegsTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('password');
+            $table->string('address');
+            $table->string('propic');
             // $table->timestamp('email_verified_at')->nullable();
             // $table->rememberToken();
             // $table->timestamps();

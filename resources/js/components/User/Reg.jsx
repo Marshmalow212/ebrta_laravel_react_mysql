@@ -18,6 +18,7 @@ class Reg extends Component{
             email:'',
             password:'',
             con_pass:'',
+            file:'',
             message:'',
             status:false,
             prev:'',

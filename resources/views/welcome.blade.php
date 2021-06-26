@@ -13,6 +13,7 @@
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="https://kit.fontawesome.com/043071f853.js" crossorigin="anonymous"></script>
+        
 
     </head>
     <body class="antialiased" id="index">

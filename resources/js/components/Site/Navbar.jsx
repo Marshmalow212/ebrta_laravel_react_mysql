@@ -95,7 +95,7 @@ class Navbar extends Component{
         </div>
                     </li>
                     <li className="nav-item mr-2"><a className="nav-link text-light"href="#section2">Press Release</a></li>
-                    <li className="nav-item mr-2"><a className="nav-link text-light"href="#section3">Contacts</a></li>
+                    <li className="nav-item mr-2"><a className="nav-link text-light"href="/contact">Contacts</a></li>
                     
                 </ul>
                 <ul className="navbar-nav">
@@ -107,7 +107,7 @@ class Navbar extends Component{
                 </div>
                     
                 {this.state.showlogin?<LoginModal />:""}
-                {this.state.showreg?<Textin />:""}
+                {this.state.showreg?<Textin title="Register" />:""}
                 </>
         );
     }

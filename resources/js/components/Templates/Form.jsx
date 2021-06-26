@@ -6,12 +6,16 @@ import Navbar from './../Site/Navbar';
 class Form extends Component {
     constructor(props) {
         super(props);
+        let uData = JSON.parse(localStorage.getItem('cUser'));
         this.state={
-            id:null,
+            id:uData.id,
             isopen:true,
             selop:'',
+            niid:uData.niid,
+            address:uData.address,
             regtype:'',
             vehdata:{
+                user_reg_id:uData.id,
                 brand:'',
                 model:'',
                 engine:'',
@@ -19,15 +23,15 @@ class Form extends Component {
                 year:'',
             },
             licdata:{
+                user_reg_id:uData.id,
                 name:'',
-                niid:'',
-                date:'',
-                address:'',
+                niid:uData.niid,
+                dob:'',
+                address:uData.address,
                 vtype:'',
+                ltype:''
             },
-            rendata:{
-
-            }
+            rendata:[]
 
         };
 
@@ -51,7 +55,9 @@ class Form extends Component {
                 ...prevState.licdata,[targetname] : e.target.value}})); 
         }
              
-        else if(this.state.regtype === 'ren'){}
+        else if(this.state.regtype === 'ren'){
+            
+        }
         
 
         // console.log(this.state.vehdata)
@@ -64,12 +70,39 @@ class Form extends Component {
     }
 
     sendrq(e){
+        e.preventDefault();
 
+        // Object.keys(this.state.licdata).map(
+        //     (i)=> {console.log(i+' '+this.state.licdata[i])}
+        // );
+        if(this.state.regtype === 'drl'){
+            axios.post('/api/addlicense',this.state.licdata).
+            then(
+                res=>{
+                    console.log(res.data.message);
+                    console.log(res.data.data);
+                    console.log(res.data.reqinfo);
+                }
+            );
+        }
+        else if(this.state.regtype === 'veh'){
+            axios.post('/api/addvehicle',this.state.vehdata).
+            then(
+                res=>{
+                    console.log(res.data.message);
+                    console.log(res.data.data);
+                    console.log(res.data.reqinfo);
+                }
+            );
+        }
     }
 
     selectopt(e){
         console.log(e.target.name+' '+e.target.value);
         this.setState({ [e.target.name]:e.target.value  });
+        if(e.target.value === 'ren'){
+            
+        }
     }
     
     render() {
@@ -104,7 +137,7 @@ class Form extends Component {
                 <input onChange={this.datacol} type="text" name="year" placeholder="2012" className="form-control form-control " />
                  </label> <br />
 
-                 <button type="submit" className="btn btn-primary">Send Request</button>
+                 <button type="submit" onClick={this.sendrq} className="btn btn-primary">Send Request</button>
 
             </form>
                 </>
@@ -120,21 +153,21 @@ class Form extends Component {
                 <input onChange={this.datacol} type="text" name="name" placeholder="" className="form-control form-control " />
                  </label>    
                  <label htmlFor="" className=" form-group text-light">NIID
-                <input onChange={this.datacol} type="text" name="niid" placeholder="" className="form-control form-control " />
+                <input onChange={this.datacol} type="text" name="niid" placeholder="" defaultValue={this.state.niid} className="form-control form-control " />
                  </label>  
                              
                 </span><br />
                 <span>
                 <label htmlFor="" className=" form-group text-light mr-3">D.O.B
-                <input onChange={this.datacol} type="text" name="date" placeholder="" className="form-control form-control" />
+                <input onChange={this.datacol} type="date" name="dob" placeholder="" className="form-control form-control" />
                  </label>    
                  <label htmlFor="" className=" form-group text-light">Address
-                <input onChange={this.datacol} type="text" name="address" placeholder="" className="form-control form-control " />
+                <input onChange={this.datacol} type="text" name="address" placeholder="" defaultValue={this.state.address} className="form-control form-control " />
                  </label>  
                              
                 </span><br />
                 <span>
-                 <label htmlFor="" className="form-group text-light mr-3">Vehicle Type
+                 <label htmlFor="vtype" className="form-group text-light mr-3">Vehicle Type
                  <select name="vtype" onChange={this.datacol} className="form-control ">
                      <option >Vehicle Type</option>
                      <option value="light">Light</option>
@@ -154,7 +187,7 @@ class Form extends Component {
                 </span> <br />
                 
 
-                 <button type="submit" className="btn btn-primary">Send Request</button>
+                 <button type="submit" onClick={this.sendrq} className="btn btn-primary">Send Request</button>
 
             </form>
 
@@ -167,18 +200,25 @@ class Form extends Component {
                 <div className="container">
                 <table className="table table-dark border-0 rounded">
                     <thead>
+                    <tr>
                         <th>Name</th>
                         <th>Reg No.</th>
                         <th>Remarks</th>
                         <th>Action</th>
+                    </tr>
                     </thead>
+                    
                     <tbody>
+                        <tr>
                         <td>Driving License</td>
                         <td>LKJLKJ33434</td>
                         <td>Expires soon</td>
                         <td>
-                            <button className="btn btn-danger">Renewal Request</button>
-                        </td>
+                            <button onClick={this.sendrq} className="btn btn-danger">Renewal Request</button>
+                        </td>  
+                        </tr>
+                        
+                        
                     </tbody>
                 </table>
 

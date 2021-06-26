@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\vehicledata;
+use App\Models\Userrequest;
 
 class VehicledataController extends Controller
 {
@@ -14,8 +15,13 @@ class VehicledataController extends Controller
 
         $data = new vehicledata($request->all());
         $data->save();
+        $licid = $data->id;
+        $reqinfo = Userrequest::create([
+            'reqinfo_id'=>$licid
+        ]);
+        $reqinfo->save();
 
-        return response()->json(['message'=>'Vehicle Registration Added','data'=>$data]);
+        return response()->json(['message'=>'Vehicle Registration Added','data'=>$data,'reqinfo'=>$reqinfo]);
     }
 
     

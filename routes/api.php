@@ -12,6 +12,7 @@ use App\Http\Controllers\DatainfoController;
 use App\Http\Controllers\ReqinfoController;
 use App\Http\Controllers\UserrequestController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,7 +30,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post("userregistration","App\Http\Controllers\Usercontroller@store");
 Route::post("userlogin","App\Http\Controllers\Usercontroller@index");
-Route::get("userdetail","App\Http\Controllers\Usercontroller@detail");
+// Route::get("userdetail","App\Http\Controllers\Usercontroller@detail");
+Route::get('userdetail/{id}',[Usercontroller::class,'getu']);
+Route::post('userupdate/{id}',[Usercontroller::class,'update']);
 
 Route::post("fileupload",[Filecontroller::class,'upfile']);
 Route::get("fileview",[Filecontroller::class,'viewfile']);
@@ -46,6 +49,8 @@ Route::get('checkreq',[ReqinfoController::class,'chek']);
 Route::get('resreq/{id}',[ReqinfoController::class,'respo']);
 
 Route::get('urecord/{id}',[RecordController::class,'index']);
+
+Route::get('getuserreq',[UserrequestController::class,'index']);
 
 
 

@@ -12,6 +12,9 @@ import Dlic from './components/Site/drivlic';
 import Vreg from './components/Site/vreg';
 import Renewal from './components/Site/renewal';
 import Form from './components/Templates/Form';
+import Contact from './components/Site/Contact';
+import adminPanel from './components/Admin/Adminpanel';
+import adminDashboard from './components/Admin/Admindashboard';
 
 
 const Main = props =>(
@@ -34,7 +37,9 @@ const Main = props =>(
         <Route exact path='/drivinglicense' component={Dlic}></Route>
         <Route exact path='/renewal' component={Renewal} ></Route>
         <Route exact path='/regform' component={Form} ></Route>
-        
+        <Route exact path='/Contact' component={Contact}></Route>
+        <Route exact path='/adminpanel' component={adminPanel}></Route>
+        <Route exact path='/admindashboard' component={adminDashboard}></Route>
     </Switch>
 );
 
