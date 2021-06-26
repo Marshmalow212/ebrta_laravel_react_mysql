@@ -65,7 +65,7 @@ class Login extends Component{
 
             if(this.state.status==='green'){
                 localStorage.setItem('cUser',JSON.stringify(response.data.data));
-                //sessionStorage.setItem('cUser',JSON.stringify(response.data.data));
+                // sessionStorage.setItem('cUser',JSON.stringify(response.data.data));
                 
                 setTimeout(() => {
                     this.setState({

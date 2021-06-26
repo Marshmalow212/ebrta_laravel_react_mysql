@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {Link,Route,BrowserRouter,useHistory} from 'react-router-dom';
@@ -17,12 +18,17 @@ class Dashboard extends Component{
 
         var name = uData.first_name+" "+uData.last_name; 
         this.state={
-            username:'',
-            uheader:uData.first_name,
+            id:uData.id,
+            username:uData.first_name,
             name:name,
             phone:uData.phone,
+            niid:uData.niid,
+            address:uData.address,
+            email:uData.email,
             submitted:false,
-            alerting:false
+            alerting:false,
+            record:[],
+            info:[]
         };
 
         this.fpath = "/storage/img/Sami.jpg";
@@ -34,6 +40,24 @@ class Dashboard extends Component{
        
         
     }
+
+    componentDidMount() {
+        axios.get('/api/urecord/'+this.state.id).
+        then(
+            res=>{
+                console.log(res.data.message);
+                // console.log(res.data.datar);
+                // console.log(res.data.datai);
+                this.setState({ 
+                    record:res.data.datar,
+                    info:res.data.datai
+                  });
+                console.log(this.state.record);
+                console.log(this.state.info);
+            }
+        )
+    }
+    
 
     
     onFocusHandle(e){
@@ -85,6 +109,8 @@ class Dashboard extends Component{
 
 
     render(){
+
+        const robj = this.state.record;
         return (
             
            <>
@@ -111,7 +137,7 @@ class Dashboard extends Component{
                                 </div>
                                 {/* <a href="#edit" className="icon" ><i className="fas fa-edit fa-lg float-left " style={{color:'white'}}> </i></a> */}
                                 </span>                                
-                                <div className="h3 pt-2 text-center text-light">John</div>
+                                <div className="h3 pt-2 text-center text-light">{this.state.username}</div>
                                 <div className="h5 pt-2 text-center text-light"><a href="#editprofile" className="text-light" style={{textDecoration:'none'}}>Edit profile</a></div>
                                 
 
@@ -132,30 +158,30 @@ class Dashboard extends Component{
                                     <tbody>
                                         <tr>
                                         <td >Name</td>
-                                        <td>John Doe</td>
+                                        <td>{this.state.name}</td>
                                         <td>License</td>
                                         <td>John Doe</td>    
                                         </tr>
                                         <tr>
                                         <td >Address</td>
-                                        <td>plataue, montreal,quebec</td>
+                                        <td>{this.state.address}</td>
                                         <td>Issued</td>
                                         <td>John Doe</td>    
                                         </tr>
                                         <tr>
                                         <td >Email</td>
-                                        <td>John Doe</td>
+                                        <td>{this.state.email}</td>
                                         <td>Expire</td>
                                         <td>John Doe</td>    
                                         </tr>
                                         <tr>
                                         <td >Phone</td>
-                                        <td>John Doe</td>
+                                        <td>{this.state.phone}</td>
                                         
                                         </tr>
                                         <tr>
                                         <td >NIID</td>
-                                        <td>John Doe</td>
+                                        <td>{this.state.niid}</td>
                                            
                                         </tr>
                                         
@@ -195,14 +221,27 @@ class Dashboard extends Component{
                                         
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                    {
+                                        
+                                        this.state.record.map((d,i)=>(
+                                        <tr key={i}>
+                                            <td>{d.user_reg_id}</td>
+                                            <td>{d.issued}</td>
+                                            <td>{d.expires}</td>
+                                            <td>{d.renewal}</td>
+                                            <td>{d.remarks}</td>
+                                        </tr>           
+                                        )
+                                                )
+                                            }
+                                        {/* <tr>                                            
                                             <td>Data</td>
                                             <td>Data</td>
                                             <td>Data</td>
                                             <td>Data</td>
                                             <td>Data</td>
                                          
-                                        </tr>
+                                        </tr> */}
                                     </tbody>
 
                                 </table>
@@ -237,14 +276,27 @@ class Dashboard extends Component{
                                         
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                    {
+                                        
+                                        this.state.info.map((d,i)=>(
+                                        <tr key={i}>
+                                            <td>{d.user_reg_id}</td>
+                                            <td>{d.regno}</td>
+                                            <td>{d.licno}</td>
+                                            <td><a className="text-light" href={d.file} download style={{textDecoration:'none'}}><span><i class="far fa-file fa-sm mr-2"></i>{d.licno}</span></a></td>
+                                            <td>{d.remarks}</td>
+                                        </tr>           
+                                        )
+                                                )
+                                            }
+                                        {/* <tr>
                                             <td>Data</td>
                                             <td>Data</td>
                                             <td>Data</td>
                                             <td><a className="text-light" href={this.fpath} download style={{textDecoration:'none'}}><span><i class="far fa-file fa-sm mr-2"></i>Data</span></a></td>
                                             <td>Data</td>
                                          
-                                        </tr>
+                                        </tr> */}
                                     </tbody>
 
                                 </table>

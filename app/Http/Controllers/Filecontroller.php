@@ -27,10 +27,16 @@ class Filecontroller extends Controller
 
             $filep = $Files ->path();
             $filen = $Files->getClientOriginalName();
+            $fext = $Files ->getClientOriginalExtension();
 
-
+            if($fext == 'pdf'){
+                $save = $Files->storeAs('public/pdf',$filen);
+            }
+            else{
+                $save = $Files->storeAs('public/img',$filen);
+            }
             $fulls ='file uploaded'.'path '.$filen ;
-            $save = $Files->storeAs('public/img',$filen);
+            
             
             return response()->json(['message'=>$fulls,'file'=>$save]);
             } catch (\Throwable $th) {

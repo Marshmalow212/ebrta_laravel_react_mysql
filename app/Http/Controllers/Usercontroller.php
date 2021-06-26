@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\UserReg;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class Usercontroller extends Controller
 {
@@ -18,14 +19,14 @@ class Usercontroller extends Controller
     {
         //
         // echo $request->get('email');
-        // $data = UserReg::where('email',$request->get('email'))->where('password',$request->get('password'))->first();
-        $data = new UserReg([
-            'first_name'=>'Erfan',
-            'last_name'=>'Taher',
-            'phone'=>'011111',
+        $data = UserReg::where('email',$request->get('email'))->where('password',$request->get('password'))->first();
+        // $data = new UserReg([
+        //     'first_name'=>'Erfan',
+        //     'last_name'=>'Taher',
+        //     'phone'=>'011111',
 
-            'email'=>$request->get('email')
-        ]);
+        //     'email'=>$request->get('email')
+        // ]);
 
         // return response()->json(['message'=>'data retrieved','data'=>$data]);
 
@@ -125,18 +126,5 @@ class Usercontroller extends Controller
         //
     }
 
-    // 
-    public function upfile(Request $request){
 
-    //    $name = $request->name;
-       $file = $request->file('fileraw');
-
-        if(is_null($file)){
-        return response()->json(['message'=>'file is null']);
-        }
-
-
-        return response()->json(['message'=>'file uploaded','file'=>$image]);
-
-    }
 }

@@ -5,6 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use App\Http\Controllers\Usercontroller;
 use App\Http\Controllers\Filecontroller;
+use App\Http\Controllers\LicensedataController;
+use App\Http\Controllers\VehicledataController;
+use App\Http\Controllers\RecordController;
+use App\Http\Controllers\DatainfoController;
+use App\Http\Controllers\ReqinfoController;
+use App\Http\Controllers\UserrequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +34,18 @@ Route::get("userdetail","App\Http\Controllers\Usercontroller@detail");
 Route::post("fileupload",[Filecontroller::class,'upfile']);
 Route::get("fileview",[Filecontroller::class,'viewfile']);
 Route::put('testout/{name}',[Filecontroller::class,'testupdate']); 
+
+Route::post('addvehicle',[VehicledataController::class,'store']);
+
+Route::post('addlicense',[LicensedataController::class,'store']);
+
+Route::post('addreq',[ReqinfoController::class,'store']);
+
+Route::get('checkreq',[ReqinfoController::class,'chek']);
+
+Route::get('resreq/{id}',[ReqinfoController::class,'respo']);
+
+Route::get('urecord/{id}',[RecordController::class,'index']);
+
+
+
