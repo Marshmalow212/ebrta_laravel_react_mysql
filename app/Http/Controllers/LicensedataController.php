@@ -23,4 +23,10 @@ class LicensedataController extends Controller
 
         return response()->json(['message'=>'Driving License Registration Added','data'=>$data,'reqinfo'=>$reqinfo]);
     }
+
+    public function index($id){
+        $data = licensedata::find($id);
+
+        return response()->json(['message'=>'license data Loaded','data'=>$data]);
+    }
 }

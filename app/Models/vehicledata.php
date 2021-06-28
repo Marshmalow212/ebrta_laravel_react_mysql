@@ -16,7 +16,8 @@ class vehicledata extends Model
         'model',
         'engine',
         'chasis',
-        'year'
+        'year',
+        'rdate'
 
     ];
 }

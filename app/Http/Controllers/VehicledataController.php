@@ -24,6 +24,12 @@ class VehicledataController extends Controller
         return response()->json(['message'=>'Vehicle Registration Added','data'=>$data,'reqinfo'=>$reqinfo]);
     }
 
+    public function index($id){
+        $data = vehicledata::find($id);
+
+        return response()->json(['message'=>'vehicle data Loaded','data'=>$data]);
+    }
+
     
     
 }

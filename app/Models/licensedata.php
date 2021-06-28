@@ -16,7 +16,8 @@ class licensedata extends Model
         'dob',
         'address',
         'vtype',
-        'ltype'
+        'ltype',
+        'rdate'
 
     ];
 }

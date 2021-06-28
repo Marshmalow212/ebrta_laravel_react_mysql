@@ -42,6 +42,10 @@ Route::post('addvehicle',[VehicledataController::class,'store']);
 
 Route::post('addlicense',[LicensedataController::class,'store']);
 
+Route::get('getvehicle/{id}',[VehicledataController::class,'index']);
+
+Route::get('getlicense/{id}',[LicensedataController::class,'index']);
+
 Route::post('addreq',[ReqinfoController::class,'store']);
 
 Route::get('checkreq',[ReqinfoController::class,'chek']);
@@ -51,6 +55,10 @@ Route::get('resreq/{id}',[ReqinfoController::class,'respo']);
 Route::get('urecord/{id}',[RecordController::class,'index']);
 
 Route::get('getuserreq',[UserrequestController::class,'index']);
+
+Route::post('updatereq/{id}',[UserrequestController::class,'update']);
+
+
 
 
 

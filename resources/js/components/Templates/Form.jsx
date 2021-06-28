@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
-import {Modal, ModalHeader, ModalBody} from 'reactstrap';
+import {Modal, ModalHeader, ModalBody, Alert} from 'reactstrap';
 import Navbar from './../Site/Navbar';
 
 class Form extends Component {
@@ -14,6 +14,8 @@ class Form extends Component {
             niid:uData.niid,
             address:uData.address,
             regtype:'',
+            alert:false,
+            msg:'Hello people',
             vehdata:{
                 user_reg_id:uData.id,
                 brand:'',
@@ -21,6 +23,7 @@ class Form extends Component {
                 engine:'',
                 chasis:'',
                 year:'',
+                rdate:''
             },
             licdata:{
                 user_reg_id:uData.id,
@@ -29,7 +32,8 @@ class Form extends Component {
                 dob:'',
                 address:uData.address,
                 vtype:'',
-                ltype:''
+                ltype:'',
+                rdate:''
             },
             rendata:[]
 
@@ -38,6 +42,7 @@ class Form extends Component {
         this.selectopt = this.selectopt.bind(this);
         this.datacol = this.datacol.bind(this);
         this.sendrq = this.sendrq.bind(this);
+        this.formref = React.createRef();
     }
 
     datacol(e){
@@ -82,6 +87,12 @@ class Form extends Component {
                     console.log(res.data.message);
                     console.log(res.data.data);
                     console.log(res.data.reqinfo);
+                    this.setState({ msg: res.data.message });
+                    setTimeout(() => {
+                        this.formref.reset();
+                        this.setState({ alert:!this.state.alert});
+                    }, 2000);
+                    this.setState({ alert: !this.state.alert });
                 }
             );
         }
@@ -92,6 +103,12 @@ class Form extends Component {
                     console.log(res.data.message);
                     console.log(res.data.data);
                     console.log(res.data.reqinfo);
+                    this.setState({ msg: res.data.message });
+                    setTimeout(() => {
+                        this.formref.reset();
+                        this.setState({ alert:!this.state.alert});
+                    }, 2000);
+                    this.setState({ alert: !this.state.alert });
                 }
             );
         }
@@ -110,11 +127,24 @@ class Form extends Component {
         let licenseform; 
         let renewalform; 
 
+        let showalert = (
+            <Modal isOpen={this.state.alert}>
+                <Alert color="success">
+                    <div className="h4">{this.state.msg}</div>
+                    
+                </Alert>    
+
+            </Modal>
+                
+            
+            
+        );
+
         if(this.state.regtype === 'veh'){
 
             vehicleform = (<>
             <h1 className="text-light text-center">Vehicle Registration</h1>
-            <form className="container p-2">
+            <form className="container p-2" ref={(el)=>this.formref=el}>
                 <span>
                 <label htmlFor="" className=" form-group text-light mr-3">Brand
                 <input onChange={this.datacol} type="text" name="brand" placeholder="Toyota" className="form-control form-control " />
@@ -135,7 +165,12 @@ class Form extends Component {
                 </span><br />
                 <label htmlFor="" className=" form-group text-light">Year
                 <input onChange={this.datacol} type="text" name="year" placeholder="2012" className="form-control form-control " />
-                 </label> <br />
+                </label> <br />
+                 <label htmlFor="" className=" form-group text-light">Registration Date
+                <input onChange={this.datacol} type="date" name="rdate" placeholder="dd-mm-yyyy" className="form-control form-control " />
+                
+                 </label>
+                 <br />
 
                  <button type="submit" onClick={this.sendrq} className="btn btn-primary">Send Request</button>
 
@@ -147,7 +182,7 @@ class Form extends Component {
         else if(this.state.regtype === 'drl'){
             licenseform = (<>
                 <h1 className="text-light text-center">Driving License Registration</h1>
-            <form className="container p-2">
+            <form className="container p-2" ref={(el)=>this.formref=el}>
                 <span>
                 <label htmlFor="" className=" form-group text-light mr-3">Name
                 <input onChange={this.datacol} type="text" name="name" placeholder="" className="form-control form-control " />
@@ -175,7 +210,7 @@ class Form extends Component {
                      <option value="heavy">Heavy</option>
                  </select>
                  </label>
-                 <label htmlFor="" className="form-group text-light">License Type
+                 <label htmlFor="" className="form-group text-light mr-3">License Type
                  <select name="ltype"  className="form-control " onChange={this.datacol}>
                      <option >License Type</option>
                      <option value="national">National</option>
@@ -183,6 +218,12 @@ class Form extends Component {
                      <option value="roadpermit">Road Permit</option>
                  </select>
                  </label>
+                 
+                 <label htmlFor="" className=" form-group text-light">Registration Date
+                <input onChange={this.datacol} type="date" name="rdate" placeholder="dd-mm-yyyy" className="form-control form-control " />
+                
+                 </label>
+                 <br />
 
                 </span> <br />
                 
@@ -232,7 +273,9 @@ class Form extends Component {
         return ( 
             <>
             <Navbar/>
+           
             <section id="regform" className="px-3" style={{paddingTop:'5rem'}}>
+            {this.state.alert?showalert:""}
                 <div className="bg-dark form-group text-center mb-0 border-0 rounded"  >
                     <span>
                         

@@ -5,26 +5,62 @@ import React, { Component } from 'react';
 class adminDashboard extends Component {
     constructor(props) {
         super(props);
+        let admindata = JSON.parse(sessionStorage.getItem('admin'));
         this.state={
-            id:this.props.id,
+            id:admindata.id,
             role:'Host Admin Developer',
-            date:'',
-            rendata:[]
+            date:new Date().toDateString(),
+            rendata:[],
+            reqdata:[],
+            sel:[]
 
         }
+        this.sel=[];
         this.reqinfo = this.reqinfo.bind(this);
+        this.changestat = this.changestat.bind(this);
     }
 
-    reqinfo(e){
-
+    componentDidMount() {
         axios.get('/api/getuserreq').
-            then(
-                res=>{
-                    console.log(res.data.message);
-                    console.log(res.data.data);
-                    this.setState({ rendata: res.data.data });
-                }
-            );        
+        then(
+            res=>{
+                console.log(res.data.message);
+                console.log(res.data.data);
+                this.setState({ reqdata: res.data.data });
+
+            }
+        );
+    }
+
+    changestat(e){
+        e.preventDefault();
+        console.log(e.target.value);
+        let values = e.target.value.split(',');
+        // console.log(values);        
+        // console.log(values[0]);        
+        // console.log(values[1]);   
+        axios.post('/api/updatereq/'+values[1],{status:values[0]}).
+        then(
+            res=>{
+                console.log(res.data.message);
+                console.log(res.data.data);
+
+                window.open('?','_self');
+                
+            }
+        );     
+    }
+    
+
+    reqinfo(e){
+        e.preventDefault();
+        axios.get('/api/checkreq').
+        then(
+            res=>{
+                console.log(res.data);
+            }
+        );
+            
     }
     
     render() { 
@@ -43,16 +79,17 @@ class adminDashboard extends Component {
             <div>
                 <section className="bg-info  p-3">
                     <div className="jumbotron">
-                        <div className="display-4">E-BRTC Admin Panel</div>
+                        <div className="display-4">E-BRTA Admin Panel</div>
                         <hr className="my-4"/>
                         <span><h5>Admin Name :</h5> <h5>{this.state.id}</h5></span><br />
                         <span><h5>Admin Role :</h5> <h5>{this.state.role}</h5></span><br />
-                        <span><h5>Date :</h5> <h5>YYY-MM-DD</h5></span>
+                        <span><h5>Date :</h5> <h5>{this.state.date}</h5></span>
                     </div>
                     <div className="jumbotron">
                         <div className="h4">Registration Requests</div>
                         <hr className="my-4"/>
-                        <table className="table table-dark">
+                        <div className="table-responsive" style={{maxHeight:'15rem'}}>
+                        <table className="table table-dark border-0 rounded " >
                             <thead> 
                                 <tr>
                                     <td>Request No.</td>
@@ -61,19 +98,42 @@ class adminDashboard extends Component {
                                 </tr>
                             </thead>
                             <tbody>
+                                {
+                                    this.state.reqdata.map(
+                                        (d,i)=>(
+                                            <tr key={i}>
+                                                <td>{d.id}</td>
+                                                <td><a href="#" className="text-light" role="button" onClick={this.reqinfo} style={{textDecoration:'none'}}>{d.reqinfo_id}</a></td>
+                                                <td>
+                                                    
+                                                    <select key={d} className="dropdown dropdown-toggle" onChange={this.changestat}  name="status" id="dropdown">
+                                                        <option value="pending">{d.status}</option>
+                                                        <option value={["processing",d.id]}>in progress</option>
+                                                        <option value={["approved",d.id]}>approved</option>
+                                                        <option value={["rejected",d.id]}>rejected</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        )
+                                    )
+                                }
                                 <tr>
                                     <td>Data</td>
                                     <td> <a href="#" className="text-light" role="button" onClick={this.reqinfo} style={{textDecoration:'none'}}>Data</a></td>
-                                    <td>{statselect}</td>
+                                    <td>
+                                    </td>
                                 </tr>
 
                             </tbody>
                         </table>
+                        </div>
+                        
 
                     </div>
                     <div className="jumbotron">
                     <div className="h4">Renewal Requests</div>
-                        <hr my-4/>
+                        <hr className="my-4"/>
+                        <div className="table-responsive" style={{maxHeight:'15rem'}}>
                         <table className="table table-dark">
                             <thead> 
                                 <tr>
@@ -91,6 +151,7 @@ class adminDashboard extends Component {
 
                             </tbody>
                         </table>
+                        </div>
                     </div>
 
                 </section>

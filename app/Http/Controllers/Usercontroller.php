@@ -84,13 +84,13 @@ class Usercontroller extends Controller
             $fileexten = $file->getClientOriginalExtension();
             // $filepath = $file->path();
 
-            $filerename = ($request->get('first_name')).'_'.($request->get('niid'));
+            $filerename = ($request->get('first_name')).'_'.($request->get('niid').'.jpg');
             $filepath = '/storage/img/profile/';
             $filesave = $file->storeAs('/public/img/profile/',$filerename);
             $filepath = $filepath . $filerename;
 
         }else{
-            $fdata='no file found!';
+            $filepath='no file found!';
         }
 
        

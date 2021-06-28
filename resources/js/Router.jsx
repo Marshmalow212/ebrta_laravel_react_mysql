@@ -15,6 +15,8 @@ import Form from './components/Templates/Form';
 import Contact from './components/Site/Contact';
 import adminPanel from './components/Admin/Adminpanel';
 import adminDashboard from './components/Admin/Admindashboard';
+import About from './components/Site/About';
+import Resform from './components/Admin/responseform';
 
 
 const Main = props =>(
@@ -40,6 +42,8 @@ const Main = props =>(
         <Route exact path='/Contact' component={Contact}></Route>
         <Route exact path='/adminpanel' component={adminPanel}></Route>
         <Route exact path='/admindashboard' component={adminDashboard}></Route>
+        <Route exact path='/about' component={About}></Route>
+        <Route exact path='/responseform' component={Resform}></Route>
     </Switch>
 );
 

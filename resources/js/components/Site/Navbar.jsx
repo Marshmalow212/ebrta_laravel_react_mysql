@@ -94,9 +94,12 @@ class Navbar extends Component{
           <a className="dropdown-item " href="/renewal">Renewal</a>
         </div>
                     </li>
-                    <li className="nav-item mr-2"><a className="nav-link text-light"href="#section2">Press Release</a></li>
+                    <li className="nav-item mr-2"><a className="nav-link text-light"href="/about">About us</a></li>
                     <li className="nav-item mr-2"><a className="nav-link text-light"href="/contact">Contacts</a></li>
                     
+                </ul>
+                <ul className="navbar-nav">
+                    <a href="/" className="navbar-brand text-light display-2 bg-dark px-3 border-0 rounded">E-BRTA</a>
                 </ul>
                 <ul className="navbar-nav">
                 {this.props.page==='dashboard' || localStorage.getItem('cUser')?dashboardpage:homepage}

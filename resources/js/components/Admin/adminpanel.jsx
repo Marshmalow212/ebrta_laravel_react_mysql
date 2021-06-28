@@ -27,6 +27,8 @@ class Adminpanel extends Component {
         if(this.state.id === 'admin'){
             if(this.state.pass === '1111'){
                 this.setState({ login: !this.state.login, content:true });
+                sessionStorage.setItem('admin',JSON.stringify({id:this.state.id}));
+                window.open("/admindashboard","_self");
             }
         }
     }
@@ -65,7 +67,7 @@ class Adminpanel extends Component {
             <>
             <div>
                {adminlogin}
-              {this.state.content?<Admindashboard id={this.state.id}/>:""}
+
             </div>
             </>
           );

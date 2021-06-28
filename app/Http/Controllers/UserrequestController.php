@@ -19,7 +19,12 @@ class UserrequestController extends Controller
         return response()->json(['message'=>'All Requests','data'=>$reqdata]);
     }
 
-    public function renew($id,$no){
+    public function update(Request $req,$id){
+        $data = Userrequest::find($id);
+        $data->status = $req->get('status');
+        $data->save();
+
+        return response()->json(['message'=>'Request Updated','data'=>$data]);
 
     }
 }

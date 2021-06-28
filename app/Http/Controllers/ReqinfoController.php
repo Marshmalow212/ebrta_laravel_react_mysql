@@ -31,11 +31,11 @@ class ReqinfoController extends Controller
     public function chek(){
         $data = Userrequest::all();
         // echo $data;
-        foreach ($data as $i) {
-            echo $i->reqinfo_id.'\n';
-        }
+        // foreach ($data as $i) {
+        //     echo $i->reqinfo_id.'\n';
+        // }
 
-        $datainfo = Reqinfo::where('id',$data->reqinfo_id)->all();
+        $datainfo = Reqinfo::all();
 
         return response()->json(['message'=>'Data Retrieved','data'=>$data,'datainfo'=>$datainfo]);
     }
