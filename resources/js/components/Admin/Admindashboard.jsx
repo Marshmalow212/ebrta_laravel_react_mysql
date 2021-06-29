@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+import Resform from './responseform';
 
 
 class adminDashboard extends Component {
@@ -8,8 +9,10 @@ class adminDashboard extends Component {
         let admindata = JSON.parse(sessionStorage.getItem('admin'));
         this.state={
             id:admindata.id,
+            reqid:null,
+            reqdet:false,
             role:'Host Admin Developer',
-            date:new Date().toDateString(),
+            date:new Date(),
             rendata:[],
             reqdata:[],
             sel:[]
@@ -52,18 +55,17 @@ class adminDashboard extends Component {
     }
     
 
-    reqinfo(e){
-        e.preventDefault();
-        axios.get('/api/checkreq').
-        then(
-            res=>{
-                console.log(res.data);
-            }
-        );
-            
+    reqinfo(id){
+
+        console.log(id);
+        this.setState({ reqid: id, reqdet: !this.state.reqdet });
     }
     
     render() { 
+        let reqdetail = (
+            <Resform reqid={this.state.reqid}/>
+            
+        );
 
         let statselect = (
             <select className="dropdown dropdown-toggle" name="status" id="dropdown">
@@ -77,13 +79,14 @@ class adminDashboard extends Component {
         
         return ( 
             <div>
+                {this.state.reqdet?reqdetail:""}
                 <section className="bg-info  p-3">
                     <div className="jumbotron">
                         <div className="display-4">E-BRTA Admin Panel</div>
                         <hr className="my-4"/>
                         <span><h5>Admin Name :</h5> <h5>{this.state.id}</h5></span><br />
                         <span><h5>Admin Role :</h5> <h5>{this.state.role}</h5></span><br />
-                        <span><h5>Date :</h5> <h5>{this.state.date}</h5></span>
+                        <span><h5>Date :</h5> <h5>{this.state.date.getFullYear()+'-'+this.state.date.getMonth()+'-'+this.state.date.getDate()}</h5></span>
                     </div>
                     <div className="jumbotron">
                         <div className="h4">Registration Requests</div>
@@ -103,7 +106,7 @@ class adminDashboard extends Component {
                                         (d,i)=>(
                                             <tr key={i}>
                                                 <td>{d.id}</td>
-                                                <td><a href="#" className="text-light" role="button" onClick={this.reqinfo} style={{textDecoration:'none'}}>{d.reqinfo_id}</a></td>
+                                                <td><a  className="text-light"  role="button" onClick={(e)=>this.reqinfo(d.reqinfo_id)} style={{textDecoration:'none'}}>{d.reqinfo_id}</a></td>
                                                 <td>
                                                     
                                                     <select key={d} className="dropdown dropdown-toggle" onChange={this.changestat}  name="status" id="dropdown">
@@ -117,12 +120,7 @@ class adminDashboard extends Component {
                                         )
                                     )
                                 }
-                                <tr>
-                                    <td>Data</td>
-                                    <td> <a href="#" className="text-light" role="button" onClick={this.reqinfo} style={{textDecoration:'none'}}>Data</a></td>
-                                    <td>
-                                    </td>
-                                </tr>
+                               
 
                             </tbody>
                         </table>

@@ -16,7 +16,7 @@ class CreateDatainfosTable extends Migration
         Schema::create('datainfos', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('user_reg_id');
-            $table->string('regno');
+            $table->string('regtype');
             $table->string('licno');
             $table->string('file');
             $table->string('remarks');

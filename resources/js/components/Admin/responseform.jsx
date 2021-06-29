@@ -6,28 +6,118 @@ class Resform extends Component {
     constructor(props) {
         super(props);
         this.state={
-            regtype:null,
-            id:100001,
+            regtype:'',
+            id:(this.props.reqid?this.props.reqid:100001),
             open:false,
             ret:{},
             vdata:{},
             ldata:{},
             msg:'Hello people',
-            alert:false 
+            alert:false,
+            formdata:new FormData()
         }
 
         this.formref = React.createRef();
         this.getdata(this.state.id);
+        this.closethis = this.closethis.bind(this);
+        this.sendreq = this.sendreq.bind(this);
+        this.fileh = this.fileh.bind(this);
+
     }
 
+    fileh(e){
+        // e.preventDefault();
+        // this.setState({ file: [e.target.files[0]] });
+        const fileraw = e.target.files[0];
+        console.log(fileraw);
+        this.state.formdata.append('file',e.target.files[0]);
+    }
+
+    sendreq(e){
+        e.preventDefault();
+        // console.log(this.state.file);
+        if(this.state.regtype === 'veh'){
+            console.log(this.state.vdata);
+            for(var i in this.state.vdata){
+                this.state.formdata.append(i,this.state.vdata[i]);
+            }
+            console.log(this.state.formdata.get('file')); 
+            
+            axios.post('/api/updatereq',this.state.formdata).
+            then(
+                res=>{
+                    console.log(res.data.message);
+                    console.log(res.data.data);
+                    console.log(res.data.reqdata);
+                    console.log(res.data.info);
+                    this.setState({msg: res.data.message , alert: !this.state.alert });  
+                    setTimeout(() => {
+                        this.setState({alert: !this.state.alert });                     
+                    }, 3000);
+                    this.formref.reset();
+                    setTimeout(() => {
+                        this.setState({ open: !this.state.open });
+                    }, 2000);
+                  
+                    window.open("/admindashboard","_self");
+
+                }
+            );
+
+        }
+        else if(this.state.regtype === 'drl'){
+            
+            console.log(this.state.ldata);
+            for(var i in this.state.ldata){
+                this.state.formdata.append(i,this.state.ldata[i]);
+            }
+            console.log(this.state.formdata.get('file')); 
+            
+            axios.post('/api/updatereq',this.state.formdata).
+            then(
+                res=>{
+                    console.log(res.data.message);
+                    console.log(res.data.data);
+                    console.log(res.data.reqdata);
+                    console.log(res.data.info);
+                    this.setState({msg: res.data.message , alert: !this.state.alert });  
+                    setTimeout(() => {
+                        this.setState({alert: !this.state.alert });                     
+                    }, 3000);
+                    this.formref.reset();
+                    setTimeout(() => {
+                        this.setState({ open: !this.state.open });
+                    }, 2000);
+                  
+                    window.open("/admindashboard","_self");
+
+                }
+            );
+
+        }
+    }
+
+    closethis(e){
+        e.preventDefault();
+        this.setState({ open: !this.state.open });
+        window.open("/admindashboard","_self");
+    }
+    
+
     getdata(id){
-        if (id< 200001) {
+        console.log(id);
+        if(!id){
+            // setTimeout(() => {
+            //     this.setState({ open:!this.state.open });
+            // }, 3000);
+        }
+        else if (id< 200001) {
             axios.get('/api/getvehicle/'+id).
             then(
                 res=>{
                     console.log(res.data.message);
                     console.log(res.data.data);
-                    this.setState({ vdata: res.data.data, regtype:'veh', open:!this.state.open });
+                    this.setState({ vdata: res.data.data, regtype:'veh',open: !this.state.open  });
                 }
             );
             
@@ -37,6 +127,7 @@ class Resform extends Component {
                 res=>{
                     console.log(res.data.message);
                     console.log(res.data.data);
+                    this.setState({ ldata: res.data.data, regtype:'drl',open: !this.state.open });
                 }
             );
             
@@ -71,7 +162,7 @@ class Resform extends Component {
 
             vehicleform = (<>
             <h1 className="text-light text-center">Vehicle Registration</h1>
-            <form className="container p-2" ref={(el)=>this.formref=el}>
+            <form className="container p-2" ref={(el)=>this.formref=el} encType="multipart/form-data">
                 <span>
                 <label htmlFor="" className=" form-group text-light mr-3">Brand
                 <input value={this.state.vdata.brand} readOnly={true} type="text" name="brand" placeholder="Toyota" className="form-control form-control " />
@@ -94,12 +185,18 @@ class Resform extends Component {
                 <input value={this.state.vdata.year} readOnly={true} type="text" name="year" placeholder="2012" className="form-control form-control " />
                 </label> <br />
                  <label htmlFor="" className=" form-group text-light">Registration Date
-                <input value={this.state.vdata.rdate} readOnly={true} type="date" name="rdate" placeholder="dd-mm-yyyy" className="form-control form-control " />
+                <input value={this.state.vdata.rdate} readOnly={true} type="date" name="rdate" placeholder="dd-mm-yyyy" className="form-control  " />
                 
-                 </label>
+                 </label><br />
+                 <label htmlFor="" className="form-group text-light">Attach License File
+                 <input type="file" className="form-control form-control-input" onChange={this.fileh}/>
+                     </label>                
                  <br />
-
-                 <button type="submit" onClick={this.sendrq} className="btn btn-primary">Approve</button>
+                <div className="form-group text-light button-group">
+                <button type="submit" onClick={this.sendreq} className="btn btn-primary mr-2">Approve</button>
+                <button type="submit" onClick={this.closethis} className="btn btn-primary">Cancel</button>
+                </div>
+                 
 
             </form>
                 </>
@@ -112,41 +209,46 @@ class Resform extends Component {
             <form className="container p-2" ref={(el)=>this.formref=el}>
                 <span>
                 <label htmlFor="" className=" form-group text-light mr-3">Name
-                <input defaultValue={this.datacol} type="text" name="name" placeholder="" className="form-control form-control " />
+                <input value={this.state.ldata.name} readOnly={true} type="text" name="name" placeholder="" className="form-control form-control " />
                  </label>    
-                 <label htmlFor="" className=" form-group text-light">NIID
-                <input defaultValue={this.datacol} type="text" name="niid" placeholder="" defaultValue={this.state.niid} className="form-control form-control " />
-                 </label>  
+                 
                              
                 </span><br />
                 <span>
                 <label htmlFor="" className=" form-group text-light mr-3">D.O.B
-                <input defaultValue={this.datacol} type="date" name="dob" placeholder="" className="form-control form-control" />
+                <input value={this.state.ldata.dob} readOnly={true} type="date" name="dob" placeholder="" className="form-control form-control" />
                  </label>    
                  <label htmlFor="" className=" form-group text-light">Address
-                <input defaultValue={this.datacol} type="text" name="address" placeholder="" defaultValue={this.state.address} className="form-control form-control " />
+                <input value={this.state.ldata.address} readOnly={true} type="text" name="address" placeholder="" className="form-control form-control " />
                  </label>  
                              
                 </span><br />
                 <span>
                  <label htmlFor="vtype" className="form-group text-light mr-3">Vehicle Type
-                 <input name="vtype" type="text" defaultValue={this.datacol} className="form-control "></input>
+                 <input name="vtype" type="text" value={this.state.ldata.vtype} readOnly={true} className="form-control "></input>
                  </label>
 
                  <label htmlFor="" className="form-group text-light mr-3">License Type
-                 <input name="ltype" type="text"  className="form-control " defaultValue={this.datacol}></input>
+                 <input name="ltype" type="text"  className="form-control " value={this.state.ldata.ltype} readOnly={true}></input>
                   </label>
                  
                  <label htmlFor="" className=" form-group text-light">Registration Date
-                <input defaultValue={this.datacol} type="date" name="rdate" placeholder="dd-mm-yyyy" className="form-control form-control " />
+                <input value={this.state.ldata.rdate} readOnly={true} type="date" name="rdate" placeholder="dd-mm-yyyy" className="form-control form-control " />
                 
                  </label>
                  <br />
 
                 </span> <br />
+                <label htmlFor="" className="form-group text-light">Attach License File
+                 <input type="file" className="form-control form-control-input" onChange={this.fileh}/>
+                     </label>                
+                 <br />
                 
 
-                 <button type="submit" onClick={this.sendrq} className="btn btn-primary">Send Request</button>
+                <div className="form-group text-light" className="button-group">
+                <button type="submit" onClick={this.sendreq} className="btn btn-primary mr-2">Approve</button>
+                <button type="submit" onClick={this.closethis} className="btn btn-primary">Cancel</button>
+                </div>
 
             </form>
 

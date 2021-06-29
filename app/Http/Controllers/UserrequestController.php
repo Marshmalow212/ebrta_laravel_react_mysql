@@ -14,7 +14,7 @@ class UserrequestController extends Controller
     {
         //
 
-        $reqdata = Userrequest::all();
+        $reqdata = Userrequest::orderByDesc('status')->get();
 
         return response()->json(['message'=>'All Requests','data'=>$reqdata]);
     }

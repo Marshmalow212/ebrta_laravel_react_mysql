@@ -12,6 +12,7 @@ class Record extends Model
     public $timestamps = false;
     protected $fillable = [
         'user_reg_id',
+        'name',
         'issued',
         'expires',
         'renewal',

@@ -54,6 +54,8 @@ Route::get('resreq/{id}',[ReqinfoController::class,'respo']);
 
 Route::get('urecord/{id}',[RecordController::class,'index']);
 
+Route::post('updatereq',[RecordController::class,'update']);
+
 Route::get('getuserreq',[UserrequestController::class,'index']);
 
 Route::post('updatereq/{id}',[UserrequestController::class,'update']);

@@ -12,7 +12,7 @@ class datainfo extends Model
     public $timestamps = false;
     protected $fillable = [
         'user_reg_id',
-        'regno',
+        'regtype',
         'licno',
         'file',
         'remarks'

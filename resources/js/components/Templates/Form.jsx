@@ -45,6 +45,25 @@ class Form extends Component {
         this.formref = React.createRef();
     }
 
+    componentDidMount() {
+        if(this.state.regtype === 'ren'){
+            axios.get('/api/urecord/'+this.state.id).
+            then(
+                res=>{
+                    console.log(res.data.message);
+                    // console.log(res.data.datar);
+                    // console.log(res.data.datai);
+                    this.setState({ 
+                        rendata:res.data.datar
+                      });
+                    console.log(this.state.rendata);
+                    // console.log(this.state.info);
+                }
+            );            
+        }
+    }
+    
+
     datacol(e){
         if(this.state.regtype === 'veh'){
             this.setState(prevState=>({
@@ -112,13 +131,27 @@ class Form extends Component {
                 }
             );
         }
+        
     }
 
     selectopt(e){
+        e.preventDefault();
         console.log(e.target.name+' '+e.target.value);
         this.setState({ [e.target.name]:e.target.value  });
         if(e.target.value === 'ren'){
-            
+            axios.get('/api/urecord/'+this.state.id).
+            then(
+                res=>{
+                    console.log(res.data.message);
+                    // console.log(res.data.datar);
+                    // console.log(res.data.datai);
+                    this.setState({ 
+                        rendata:res.data.datar
+                      });
+                    console.log(this.state.rendata);
+                    // console.log(this.state.info);
+                }
+            ); 
         }
     }
     
@@ -243,22 +276,26 @@ class Form extends Component {
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Reg No.</th>
-                        <th>Remarks</th>
+                        <th>Issue Date</th>
+                        <th>Expiration Date</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     
                     <tbody>
-                        <tr>
-                        <td>Driving License</td>
-                        <td>LKJLKJ33434</td>
-                        <td>Expires soon</td>
-                        <td>
-                            <button onClick={this.sendrq} className="btn btn-danger">Renewal Request</button>
-                        </td>  
-                        </tr>
-                        
+                        { this.state.rendata.map(
+                            (d,i)=>(
+                                <tr key={i}>
+                                <td>{d.name}</td>
+                                <td>{d.issued}</td>
+                                <td>{d.expires}</td>
+                                <td>
+                                    <button onClick={this.sendrq} className="btn btn-danger">Renewal Request</button>
+                                </td>  
+                                </tr>
+                            )
+                        )                        
+                        }
                         
                     </tbody>
                 </table>

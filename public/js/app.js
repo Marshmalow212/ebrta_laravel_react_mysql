@@ -2289,7 +2289,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _responseform__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./responseform */ "./resources/js/components/Admin/responseform.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2317,6 +2318,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var adminDashboard = /*#__PURE__*/function (_Component) {
   _inherits(adminDashboard, _Component);
 
@@ -2331,8 +2333,10 @@ var adminDashboard = /*#__PURE__*/function (_Component) {
     var admindata = JSON.parse(sessionStorage.getItem('admin'));
     _this.state = {
       id: admindata.id,
+      reqid: null,
+      reqdet: false,
       role: 'Host Admin Developer',
-      date: new Date().toDateString(),
+      date: new Date(),
       rendata: [],
       reqdata: [],
       sel: []
@@ -2376,10 +2380,11 @@ var adminDashboard = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "reqinfo",
-    value: function reqinfo(e) {
-      e.preventDefault();
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/checkreq').then(function (res) {
-        console.log(res.data);
+    value: function reqinfo(id) {
+      console.log(id);
+      this.setState({
+        reqid: id,
+        reqdet: !this.state.reqdet
       });
     }
   }, {
@@ -2387,165 +2392,155 @@ var adminDashboard = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this3 = this;
 
-      var statselect = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+      var reqdetail = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_responseform__WEBPACK_IMPORTED_MODULE_2__.default, {
+        reqid: this.state.reqid
+      });
+
+      var statselect = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
         className: "dropdown dropdown-toggle",
         name: "status",
         id: "dropdown",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
           value: "pending",
           children: "pending"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
           value: "processing",
           children: "in progress"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
           value: "approve",
           children: "approved"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
           value: "reject",
           children: "rejected"
         })]
       });
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("section", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: [this.state.reqdet ? reqdetail : "", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("section", {
           className: "bg-info  p-3",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "jumbotron",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "display-4",
               children: "E-BRTA Admin Panel"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("hr", {
               className: "my-4"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
                 children: "Admin Name :"
-              }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+              }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
                 children: this.state.id
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
                 children: "Admin Role :"
-              }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+              }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
                 children: this.state.role
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
                 children: "Date :"
-              }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
-                children: this.state.date
+              }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
+                children: this.state.date.getFullYear() + '-' + this.state.date.getMonth() + '-' + this.state.date.getDate()
               })]
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "jumbotron",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "h4",
               children: "Registration Requests"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("hr", {
               className: "my-4"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "table-responsive",
               style: {
                 maxHeight: '15rem'
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", {
                 className: "table table-dark border-0 rounded ",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                       children: "Request No."
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                       children: "Request Info No."
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                       children: "Status"
                     })]
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tbody", {
-                  children: [this.state.reqdata.map(function (d, i) {
-                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
+                  children: this.state.reqdata.map(function (d, i) {
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                         children: d.id
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                          href: "#",
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
                           className: "text-light",
                           role: "button",
-                          onClick: _this3.reqinfo,
+                          onClick: function onClick(e) {
+                            return _this3.reqinfo(d.reqinfo_id);
+                          },
                           style: {
                             textDecoration: 'none'
                           },
                           children: d.reqinfo_id
                         })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
                           className: "dropdown dropdown-toggle",
                           onChange: _this3.changestat,
                           name: "status",
                           id: "dropdown",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
                             value: "pending",
                             children: d.status
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
                             value: ["processing", d.id],
                             children: "in progress"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
                             value: ["approved", d.id],
                             children: "approved"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
                             value: ["rejected", d.id],
                             children: "rejected"
                           })]
                         }, d)
                       })]
                     }, i);
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
-                      children: "Data"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
-                      children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                        href: "#",
-                        className: "text-light",
-                        role: "button",
-                        onClick: this.reqinfo,
-                        style: {
-                          textDecoration: 'none'
-                        },
-                        children: "Data"
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {})]
-                  })]
+                  })
                 })]
               })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "jumbotron",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "h4",
               children: "Renewal Requests"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("hr", {
               className: "my-4"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "table-responsive",
               style: {
                 maxHeight: '15rem'
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", {
                 className: "table table-dark",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                       children: "Request No."
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                       children: "Request Info No."
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                       children: "Status"
                     })]
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", {
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                       children: "Data"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("td", {
-                      children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
+                      children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
                         href: "#",
                         className: "text-light",
                         role: "button",
@@ -2555,7 +2550,7 @@ var adminDashboard = /*#__PURE__*/function (_Component) {
                         },
                         children: "Data"
                       })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", {
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
                       children: statselect
                     })]
                   })
@@ -2563,7 +2558,7 @@ var adminDashboard = /*#__PURE__*/function (_Component) {
               })
             })]
           })]
-        })
+        })]
       });
     }
   }]);
@@ -2794,49 +2789,159 @@ var Resform = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      regtype: null,
-      id: 100001,
+      regtype: '',
+      id: _this.props.reqid ? _this.props.reqid : 100001,
       open: false,
       ret: {},
       vdata: {},
       ldata: {},
       msg: 'Hello people',
-      alert: false
+      alert: false,
+      formdata: new FormData()
     };
     _this.formref = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
 
     _this.getdata(_this.state.id);
 
+    _this.closethis = _this.closethis.bind(_assertThisInitialized(_this));
+    _this.sendreq = _this.sendreq.bind(_assertThisInitialized(_this));
+    _this.fileh = _this.fileh.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Resform, [{
-    key: "getdata",
-    value: function getdata(id) {
+    key: "fileh",
+    value: function fileh(e) {
+      // e.preventDefault();
+      // this.setState({ file: [e.target.files[0]] });
+      var fileraw = e.target.files[0];
+      console.log(fileraw);
+      this.state.formdata.append('file', e.target.files[0]);
+    }
+  }, {
+    key: "sendreq",
+    value: function sendreq(e) {
       var _this2 = this;
 
-      if (id < 200001) {
+      e.preventDefault(); // console.log(this.state.file);
+
+      if (this.state.regtype === 'veh') {
+        console.log(this.state.vdata);
+
+        for (var i in this.state.vdata) {
+          this.state.formdata.append(i, this.state.vdata[i]);
+        }
+
+        console.log(this.state.formdata.get('file'));
+        axios.post('/api/updatereq', this.state.formdata).then(function (res) {
+          console.log(res.data.message);
+          console.log(res.data.data);
+          console.log(res.data.reqdata);
+          console.log(res.data.info);
+
+          _this2.setState({
+            msg: res.data.message,
+            alert: !_this2.state.alert
+          });
+
+          setTimeout(function () {
+            _this2.setState({
+              alert: !_this2.state.alert
+            });
+          }, 3000);
+
+          _this2.formref.reset();
+
+          setTimeout(function () {
+            _this2.setState({
+              open: !_this2.state.open
+            });
+          }, 2000);
+          window.open("/admindashboard", "_self");
+        });
+      } else if (this.state.regtype === 'drl') {
+        console.log(this.state.ldata);
+
+        for (var i in this.state.ldata) {
+          this.state.formdata.append(i, this.state.ldata[i]);
+        }
+
+        console.log(this.state.formdata.get('file'));
+        axios.post('/api/updatereq', this.state.formdata).then(function (res) {
+          console.log(res.data.message);
+          console.log(res.data.data);
+          console.log(res.data.reqdata);
+          console.log(res.data.info);
+
+          _this2.setState({
+            msg: res.data.message,
+            alert: !_this2.state.alert
+          });
+
+          setTimeout(function () {
+            _this2.setState({
+              alert: !_this2.state.alert
+            });
+          }, 3000);
+
+          _this2.formref.reset();
+
+          setTimeout(function () {
+            _this2.setState({
+              open: !_this2.state.open
+            });
+          }, 2000);
+          window.open("/admindashboard", "_self");
+        });
+      }
+    }
+  }, {
+    key: "closethis",
+    value: function closethis(e) {
+      e.preventDefault();
+      this.setState({
+        open: !this.state.open
+      });
+      window.open("/admindashboard", "_self");
+    }
+  }, {
+    key: "getdata",
+    value: function getdata(id) {
+      var _this3 = this;
+
+      console.log(id);
+
+      if (!id) {// setTimeout(() => {
+        //     this.setState({ open:!this.state.open });
+        // }, 3000);
+      } else if (id < 200001) {
         axios.get('/api/getvehicle/' + id).then(function (res) {
           console.log(res.data.message);
           console.log(res.data.data);
 
-          _this2.setState({
+          _this3.setState({
             vdata: res.data.data,
             regtype: 'veh',
-            open: !_this2.state.open
+            open: !_this3.state.open
           });
         });
       } else {
         axios.get('/api/getlicense/' + id).then(function (res) {
           console.log(res.data.message);
           console.log(res.data.data);
+
+          _this3.setState({
+            ldata: res.data.data,
+            regtype: 'drl',
+            open: !_this3.state.open
+          });
         });
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var vehicleform;
       var licenseform;
@@ -2864,8 +2969,9 @@ var Resform = /*#__PURE__*/function (_Component) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
             className: "container p-2",
             ref: function ref(el) {
-              return _this3.formref = el;
+              return _this4.formref = el;
             },
+            encType: "multipart/form-data",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
                 htmlFor: "",
@@ -2934,18 +3040,34 @@ var Resform = /*#__PURE__*/function (_Component) {
                 type: "date",
                 name: "rdate",
                 placeholder: "dd-mm-yyyy",
-                className: "form-control form-control "
+                className: "form-control  "
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-              type: "submit",
-              onClick: this.sendrq,
-              className: "btn btn-primary",
-              children: "Approve"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
+              htmlFor: "",
+              className: "form-group text-light",
+              children: ["Attach License File", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                type: "file",
+                className: "form-control form-control-input",
+                onChange: this.fileh
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "form-group text-light button-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                type: "submit",
+                onClick: this.sendreq,
+                className: "btn btn-primary mr-2",
+                children: "Approve"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                type: "submit",
+                onClick: this.closethis,
+                className: "btn btn-primary",
+                children: "Cancel"
+              })]
             })]
           })]
         });
       } else if (this.state.regtype === 'drl') {
-        var _jsx2, _jsx3;
+        var _jsxs2;
 
         licenseform = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
@@ -2954,35 +3076,28 @@ var Resform = /*#__PURE__*/function (_Component) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
             className: "container p-2",
             ref: function ref(el) {
-              return _this3.formref = el;
+              return _this4.formref = el;
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
                 htmlFor: "",
                 className: " form-group text-light mr-3",
                 children: ["Name", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  defaultValue: this.datacol,
+                  value: this.state.ldata.name,
+                  readOnly: true,
                   type: "text",
                   name: "name",
                   placeholder: "",
                   className: "form-control form-control "
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
-                htmlFor: "",
-                className: " form-group text-light",
-                children: ["NIID", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", (_jsx2 = {
-                  defaultValue: this.datacol,
-                  type: "text",
-                  name: "niid",
-                  placeholder: ""
-                }, _defineProperty(_jsx2, "defaultValue", this.state.niid), _defineProperty(_jsx2, "className", "form-control form-control "), _jsx2))]
-              })]
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
                 htmlFor: "",
                 className: " form-group text-light mr-3",
                 children: ["D.O.B", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  defaultValue: this.datacol,
+                  value: this.state.ldata.dob,
+                  readOnly: true,
                   type: "date",
                   name: "dob",
                   placeholder: "",
@@ -2991,12 +3106,14 @@ var Resform = /*#__PURE__*/function (_Component) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
                 htmlFor: "",
                 className: " form-group text-light",
-                children: ["Address", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", (_jsx3 = {
-                  defaultValue: this.datacol,
+                children: ["Address", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                  value: this.state.ldata.address,
+                  readOnly: true,
                   type: "text",
                   name: "address",
-                  placeholder: ""
-                }, _defineProperty(_jsx3, "defaultValue", this.state.address), _defineProperty(_jsx3, "className", "form-control form-control "), _jsx3))]
+                  placeholder: "",
+                  className: "form-control form-control "
+                })]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
@@ -3005,7 +3122,8 @@ var Resform = /*#__PURE__*/function (_Component) {
                 children: ["Vehicle Type", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
                   name: "vtype",
                   type: "text",
-                  defaultValue: this.datacol,
+                  value: this.state.ldata.vtype,
+                  readOnly: true,
                   className: "form-control "
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
@@ -3015,25 +3133,42 @@ var Resform = /*#__PURE__*/function (_Component) {
                   name: "ltype",
                   type: "text",
                   className: "form-control ",
-                  defaultValue: this.datacol
+                  value: this.state.ldata.ltype,
+                  readOnly: true
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
                 htmlFor: "",
                 className: " form-group text-light",
                 children: ["Registration Date", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                  defaultValue: this.datacol,
+                  value: this.state.ldata.rdate,
+                  readOnly: true,
                   type: "date",
                   name: "rdate",
                   placeholder: "dd-mm-yyyy",
                   className: "form-control form-control "
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {})]
-            }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("label", {
+              htmlFor: "",
+              className: "form-group text-light",
+              children: ["Attach License File", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                type: "file",
+                className: "form-control form-control-input",
+                onChange: this.fileh
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", (_jsxs2 = {
+              className: "form-group text-light"
+            }, _defineProperty(_jsxs2, "className", "button-group"), _defineProperty(_jsxs2, "children", [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
               type: "submit",
-              onClick: this.sendrq,
+              onClick: this.sendreq,
+              className: "btn btn-primary mr-2",
+              children: "Approve"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+              type: "submit",
+              onClick: this.closethis,
               className: "btn btn-primary",
-              children: "Send Request"
-            })]
+              children: "Cancel"
+            })]), _jsxs2))]
           })]
         });
       } else if (this.state.regtype === 'ren') {
@@ -3111,7 +3246,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/Jumbotron.js");
+/* harmony import */ var _Navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Navbar */ "./resources/js/components/Site/Navbar.jsx");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3138,6 +3275,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var About = /*#__PURE__*/function (_Component) {
   _inherits(About, _Component);
 
@@ -3156,27 +3295,29 @@ var About = /*#__PURE__*/function (_Component) {
   _createClass(About, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Navbar, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(Jumbotron, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Navbar__WEBPACK_IMPORTED_MODULE_1__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.default, {
           style: {
             paddingTop: '5rem'
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
             className: "display-3",
-            children: "Contact for Service"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-            className: "lead",
-            children: "This is a simple hero unit, a simple Jumbotron-style component for calling extra attention to featured content or information."
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("hr", {
+            children: "About BRTA"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
             className: "my-2"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-            children: "It uses utility classes for typography and spacing to space content out within the larger container."
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
             className: "lead",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(Button, {
-              color: "primary",
-              children: "Learn More"
-            })
+            children: "Bangladesh Road Transport Authority (BRTA) was Established under section 2A of Motor Vehicle Ordinance 1983, (Amendment-1987) Vide SRO No-303/Law/87/MVRT/1E-7/84(part), Dated 20/12/87 and has been functioning since January 1988. BRTA is a regulatory body to control manage and ensure discipline in the road transport sector and road safety related areas in Bangladesh. It is an authority under Road Transport and Highways Division of the Ministry of Road Transport and Bridges for carrying out the purposes mentioned in the Road Transport Act, 2018 and Bangladesh Road Transport Authority Act, 2017. The Chairman is the chief executive of the authority. He exercises such power and performs such function as prescribed by rules and assigned by the government from time to time. As per revised organogram total number of circle is 62 (57 District Circle + 5 Metro Circle). At present 57 circles are working where 61 AD (Engg.) is posted as head of the office. Rest of the sanctioned circles are administered from near by circles (57 circles). According to revised organogram the number of sanctioned office staff is 815 out of which 479 are working presently & Vacant Post 336. The remaining post are in the process of recruitment. Circle offices of BRTA are headed by Assistant Director (Engg.) and the divisional offices by Deputy Director (Engg.)."
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(reactstrap__WEBPACK_IMPORTED_MODULE_3__.default, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h1", {
+            className: "display-3",
+            children: "Mission & Vision"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("hr", {
+            className: "my-2"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+            className: "lead",
+            children: "A way to less people's hassle for one of the civil services with the help of ICT division."
           })]
         })]
       });
@@ -4351,6 +4492,24 @@ var Form = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(Form, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      if (this.state.regtype === 'ren') {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/urecord/' + this.state.id).then(function (res) {
+          console.log(res.data.message); // console.log(res.data.datar);
+          // console.log(res.data.datai);
+
+          _this2.setState({
+            rendata: res.data.datar
+          });
+
+          console.log(_this2.state.rendata); // console.log(this.state.info);
+        });
+      }
+    }
+  }, {
     key: "datacol",
     value: function datacol(e) {
       if (this.state.regtype === 'veh') {
@@ -4377,7 +4536,7 @@ var Form = /*#__PURE__*/function (_Component) {
   }, {
     key: "sendrq",
     value: function sendrq(e) {
-      var _this2 = this;
+      var _this3 = this;
 
       e.preventDefault(); // Object.keys(this.state.licdata).map(
       //     (i)=> {console.log(i+' '+this.state.licdata[i])}
@@ -4389,20 +4548,20 @@ var Form = /*#__PURE__*/function (_Component) {
           console.log(res.data.data);
           console.log(res.data.reqinfo);
 
-          _this2.setState({
+          _this3.setState({
             msg: res.data.message
           });
 
           setTimeout(function () {
-            _this2.formref.reset();
+            _this3.formref.reset();
 
-            _this2.setState({
-              alert: !_this2.state.alert
+            _this3.setState({
+              alert: !_this3.state.alert
             });
           }, 2000);
 
-          _this2.setState({
-            alert: !_this2.state.alert
+          _this3.setState({
+            alert: !_this3.state.alert
           });
         });
       } else if (this.state.regtype === 'veh') {
@@ -4411,20 +4570,20 @@ var Form = /*#__PURE__*/function (_Component) {
           console.log(res.data.data);
           console.log(res.data.reqinfo);
 
-          _this2.setState({
+          _this3.setState({
             msg: res.data.message
           });
 
           setTimeout(function () {
-            _this2.formref.reset();
+            _this3.formref.reset();
 
-            _this2.setState({
-              alert: !_this2.state.alert
+            _this3.setState({
+              alert: !_this3.state.alert
             });
           }, 2000);
 
-          _this2.setState({
-            alert: !_this2.state.alert
+          _this3.setState({
+            alert: !_this3.state.alert
           });
         });
       }
@@ -4432,15 +4591,29 @@ var Form = /*#__PURE__*/function (_Component) {
   }, {
     key: "selectopt",
     value: function selectopt(e) {
+      var _this4 = this;
+
+      e.preventDefault();
       console.log(e.target.name + ' ' + e.target.value);
       this.setState(_defineProperty({}, e.target.name, e.target.value));
 
-      if (e.target.value === 'ren') {}
+      if (e.target.value === 'ren') {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/urecord/' + this.state.id).then(function (res) {
+          console.log(res.data.message); // console.log(res.data.datar);
+          // console.log(res.data.datai);
+
+          _this4.setState({
+            rendata: res.data.datar
+          });
+
+          console.log(_this4.state.rendata); // console.log(this.state.info);
+        });
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this5 = this;
 
       var vehicleform;
       var licenseform;
@@ -4465,7 +4638,7 @@ var Form = /*#__PURE__*/function (_Component) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
             className: "container p-2",
             ref: function ref(el) {
-              return _this3.formref = el;
+              return _this5.formref = el;
             },
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
@@ -4547,7 +4720,7 @@ var Form = /*#__PURE__*/function (_Component) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
             className: "container p-2",
             ref: function ref(el) {
-              return _this3.formref = el;
+              return _this5.formref = el;
             },
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("label", {
@@ -4669,28 +4842,30 @@ var Form = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
                     children: "Name"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
-                    children: "Reg No."
+                    children: "Issue Date"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
-                    children: "Remarks"
+                    children: "Expiration Date"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", {
                     children: "Action"
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", {
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                    children: "Driving License"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                    children: "LKJLKJ33434"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                    children: "Expires soon"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
-                      onClick: this.sendrq,
-                      className: "btn btn-danger",
-                      children: "Renewal Request"
-                    })
-                  })]
+                children: this.state.rendata.map(function (d, i) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                      children: d.name
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                      children: d.issued
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                      children: d.expires
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                        onClick: _this5.sendrq,
+                        className: "btn btn-danger",
+                        children: "Renewal Request"
+                      })
+                    })]
+                  }, i);
                 })
               })]
             })
@@ -4891,6 +5066,8 @@ var Textin = /*#__PURE__*/function (_Component) {
             _this3.setState({
               alert: !_this3.state.alert
             });
+
+            window.open("/dashboard", "_self");
           }
         });
       } else {
@@ -4914,6 +5091,8 @@ var Textin = /*#__PURE__*/function (_Component) {
             _this3.setState({
               alert: !_this3.state.alert
             });
+
+            window.open("/dashboard", "_self");
           }
         });
       }
@@ -4942,11 +5121,20 @@ var Textin = /*#__PURE__*/function (_Component) {
     key: "closeMod",
     value: function closeMod(e) {
       e.preventDefault();
-      this.setState({
-        show: !this.state.show
-      }); // window.open('/register','_self') ;
 
-      window.open('/', '_self');
+      if (this.state.page === 'profile') {
+        this.setState({
+          show: !this.state.show
+        }); // window.open('/register','_self') ;
+
+        window.open('/dashboard', '_self');
+      } else {
+        this.setState({
+          show: !this.state.show
+        }); // window.open('/register','_self') ;
+
+        window.open('/', '_self');
+      }
     }
   }, {
     key: "render",
@@ -5407,17 +5595,19 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                 className: "col-sm-9 border-0 rounded",
                 id: "testbox",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
-                  className: "table table-borderless rounded text-light property-inline",
+                  className: "table table-borderless table-striped rounded text-light property-inline",
                   id: "tabletextcolor",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("thead", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      className: "h4",
-                      colSpan: "2",
-                      children: "Details"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      className: "h4",
-                      children: "Status"
-                    })]
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("thead", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        className: "h4",
+                        colSpan: "2",
+                        children: "Details"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        className: "h4",
+                        children: "Status"
+                      })]
+                    })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tbody", {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
@@ -5470,41 +5660,43 @@ var Dashboard = /*#__PURE__*/function (_Component) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
           id: "section2",
           className: "pt-4 px-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-            className: " border-0 rounded",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: " border-0 rounded ",
             id: "bglemon",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              className: "h4 text-center text-light pt-3 ",
+              children: "Registration Record"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
               className: "row p-3",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                className: "col-sm-12 border-0 rounded",
+                className: "col-sm-12 border-0 rounded table-responsive",
                 id: "testbox",
+                style: {
+                  maxHeight: '15rem'
+                },
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
-                  className: "table table-hover table-borderless rounded text-light",
+                  className: "table table-striped table-hover table-sm table-borderless rounded text-light",
                   id: "tabletextcolor",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("thead", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      className: "h4 text-center border",
-                      colSpan: "5",
-                      children: "Registration Record"
+                    className: "",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        children: "Name"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        children: "Issued"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        children: "Expires"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        children: "Renewal"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        children: "Remarks"
+                      })]
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("thead", {
-                    className: "h5",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      children: "Name"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      children: "Issued"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      children: "Expires"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      children: "Renewal"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      children: "Remarks"
-                    })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tbody", {
                     children: this.state.record.map(function (d, i) {
                       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-                          children: d.user_reg_id
+                          children: d.name
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
                           children: d.issued
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
@@ -5519,54 +5711,56 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                   })]
                 })
               })
-            })
+            })]
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("section", {
           id: "section3",
           className: "py-4 px-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
             className: " border-0 rounded",
             id: "bglemon",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              className: "h4 text-center text-light pt-3 ",
+              children: "Registration Data"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
               className: "row p-3",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                className: "col-sm-12 border-0 rounded",
+                className: "col-sm-12 border-0 rounded table-responsive",
+                style: {
+                  maxHeight: '15rem'
+                },
                 id: "testbox",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
-                  className: "table table-hover table-borderless rounded text-light",
+                  className: "table table-striped table-sm table-hover table-borderless rounded text-light",
                   id: "tabletextcolor",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("thead", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      className: "h4 text-center border",
-                      colSpan: "5",
-                      children: "Registration Data"
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        children: "Name"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        children: "Reg Type"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        children: "License No."
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        children: "Action"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
+                        children: "Remarks"
+                      })]
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("thead", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      children: "Name"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      children: "Reg No."
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      children: "License No."
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      children: "Action"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-                      children: "Remarks"
-                    })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tbody", {
                     children: this.state.info.map(function (d, i) {
                       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
                           children: d.user_reg_id
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-                          children: d.regno
+                          children: d.regtype
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
                           children: d.licno
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
                             className: "text-light",
                             href: d.file,
-                            download: true,
+                            target: "_blank",
                             style: {
                               textDecoration: 'none'
                             },
@@ -5584,7 +5778,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                   })]
                 })
               })
-            })
+            })]
           })
         }), this.state.edit ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_Templates_Textin__WEBPACK_IMPORTED_MODULE_4__.default, {
           page: "profile",

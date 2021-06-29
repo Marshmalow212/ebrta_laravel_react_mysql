@@ -16,6 +16,7 @@ class CreateRecordsTable extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('user_reg_id');
+            $table->string('name');
             $table->date('issued');
             $table->date('expires');
             $table->string('renewal');

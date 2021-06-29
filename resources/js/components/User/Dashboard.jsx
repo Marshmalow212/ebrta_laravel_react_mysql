@@ -62,7 +62,7 @@ class Dashboard extends Component{
                 console.log(this.state.record);
                 console.log(this.state.info);
             }
-        )
+        );
     }
     
 
@@ -157,10 +157,13 @@ class Dashboard extends Component{
                             <div className="col-sm-9 border-0 rounded" id="testbox">
                                 {/* second column */}
                                 
-                                <table className="table table-borderless rounded text-light property-inline" id="tabletextcolor">
+                                <table className="table table-borderless table-striped rounded text-light property-inline" id="tabletextcolor">
                                     <thead>
+                                        <tr>
                                         <th className="h4" colSpan="2">Details</th>
                                         <th className="h4">Status</th>
+                                        </tr>
+                                        
                                     </thead>
                                     <tbody>
                                         <tr>
@@ -207,24 +210,26 @@ class Dashboard extends Component{
                 <section id="section2" className="pt-4 px-3" >
                     {/* registration record */}
                 
-                <div className=" border-0 rounded" id="bglemon">
-                                                           
+                <div className=" border-0 rounded " id="bglemon">
+                <div className="h4 text-center text-light pt-3 ">Registration Record</div>                                   
                         <div className="row p-3">
-                            
-                            <div className="col-sm-12 border-0 rounded" id="testbox">
+                        
+                            <div className="col-sm-12 border-0 rounded table-responsive" id="testbox" style={{maxHeight:'15rem'}}>
+
                                 {/* second column */}
+                     
                                 
-                                <table className="table table-hover table-borderless rounded text-light" id="tabletextcolor">
-                                    <thead>
-                                        <th className="h4 text-center border" colSpan="5">Registration Record</th>
-                                        
-                                    </thead>
-                                    <thead className="h5">
+                                <table className="table table-striped table-hover table-sm table-borderless rounded text-light" id="tabletextcolor">
+                                   
+                                    <thead className="">
+                                        <tr>
                                         <th >Name</th>
                                         <th>Issued</th>
                                         <th>Expires</th>
                                         <th>Renewal</th>   
-                                        <th>Remarks</th>  
+                                        <th>Remarks</th>
+                                        </tr>
+                                          
                                         
                                     </thead>
                                     <tbody>
@@ -232,7 +237,7 @@ class Dashboard extends Component{
                                         
                                         this.state.record.map((d,i)=>(
                                         <tr key={i}>
-                                            <td>{d.user_reg_id}</td>
+                                            <td>{d.name}</td>
                                             <td>{d.issued}</td>
                                             <td>{d.expires}</td>
                                             <td>{d.renewal}</td>
@@ -263,23 +268,23 @@ class Dashboard extends Component{
                 <section id="section3" className="py-4 px-3">
                 {/* registration data */}
                 <div className=" border-0 rounded" id="bglemon">
-                                                           
+                <div className="h4 text-center text-light pt-3 ">Registration Data</div>             
                         <div className="row p-3">
                             
-                            <div className="col-sm-12 border-0 rounded" id="testbox">
+                            <div className="col-sm-12 border-0 rounded table-responsive" style={{maxHeight:'15rem'}} id="testbox">
                                 {/* second column */}
                                 
-                                <table className="table table-hover table-borderless rounded text-light" id="tabletextcolor">
+                                
+                                <table className="table table-striped table-sm table-hover table-borderless rounded text-light" id="tabletextcolor">
+                                    
                                     <thead>
-                                        <th className="h4 text-center border" colSpan="5">Registration Data</th>
-                                        
-                                    </thead>
-                                    <thead>
+                                        <tr>
                                         <th >Name</th>
-                                        <th>Reg No.</th>
+                                        <th>Reg Type</th>
                                         <th>License No.</th>
                                         <th>Action</th>   
                                         <th>Remarks</th>  
+                                        </tr>
                                         
                                     </thead>
                                     <tbody>
@@ -288,9 +293,9 @@ class Dashboard extends Component{
                                         this.state.info.map((d,i)=>(
                                         <tr key={i}>
                                             <td>{d.user_reg_id}</td>
-                                            <td>{d.regno}</td>
+                                            <td>{d.regtype}</td>
                                             <td>{d.licno}</td>
-                                            <td><a className="text-light" href={d.file} download style={{textDecoration:'none'}}><span><i className="far fa-file fa-sm mr-2"></i>{d.licno}</span></a></td>
+                                            <td><a className="text-light" href={d.file} target="_blank" style={{textDecoration:'none'}}><span><i className="far fa-file fa-sm mr-2"></i>{d.licno}</span></a></td>
                                             <td>{d.remarks}</td>
                                         </tr>           
                                         )

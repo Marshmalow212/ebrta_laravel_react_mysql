@@ -64,6 +64,7 @@ class Textin extends Component{
                        this.setState({ alert: !this.state.alert });
                    }, 3000);
                    this.setState({ alert: !this.state.alert });
+                   window.open("/dashboard","_self");
                    
                 }
             }
@@ -81,7 +82,7 @@ class Textin extends Component{
                         this.setState({ alert: !this.state.alert });
                     }, 3000);
                     this.setState({ alert: !this.state.alert });
-                    
+                    window.open("/dashboard","_self");
                     }
                 }
             );
@@ -110,9 +111,16 @@ class Textin extends Component{
     closeMod(e){
         e.preventDefault();
 
-        this.setState({ show:!this.state.show });    
+        if (this.state.page ==='profile') {
+            this.setState({ show:!this.state.show });    
+        // window.open('/register','_self') ;
+        window.open('/dashboard','_self') ;
+        } else {
+            this.setState({ show:!this.state.show });    
         // window.open('/register','_self') ;
         window.open('/','_self') ;
+            
+        }
     }
     
 
