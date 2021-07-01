@@ -30,7 +30,8 @@ class Dashboard extends Component{
             alerting:false,
             edit:false,
             record:[],
-            info:[]
+            info:[],
+            lic:{}
         };
 
         this.fpath = uData.propic;
@@ -55,12 +56,16 @@ class Dashboard extends Component{
                 console.log(res.data.message);
                 // console.log(res.data.datar);
                 // console.log(res.data.datai);
+                // console.log(res.data.lic);
+                // console.log(res.data.date);
                 this.setState({ 
                     record:res.data.datar,
-                    info:res.data.datai
+                    info:res.data.datai,
+                    lic:res.data.lic
                   });
-                console.log(this.state.record);
-                console.log(this.state.info);
+                // console.log(this.state.record);
+                // console.log(this.state.info);
+                // console.log(this.state.lic);
             }
         );
     }
@@ -154,10 +159,10 @@ class Dashboard extends Component{
                             
 
                             
-                            <div className="col-sm-9 border-0 rounded" id="testbox">
+                            <div className="col-sm-9 border-0 rounded table-responsive" id="testbox">
                                 {/* second column */}
                                 
-                                <table className="table table-borderless table-striped rounded text-light property-inline" id="tabletextcolor">
+                                <table className="table table-sm table-borderless table-striped rounded text-light property-inline" id="tabletextcolor">
                                     <thead>
                                         <tr>
                                         <th className="h4" colSpan="2">Details</th>
@@ -170,19 +175,19 @@ class Dashboard extends Component{
                                         <td >Name</td>
                                         <td>{this.state.name}</td>
                                         <td>License</td>
-                                        <td>John Doe</td>    
+                                        <td>{this.state.lic.name}</td>    
                                         </tr>
                                         <tr>
                                         <td >Address</td>
                                         <td>{this.state.address}</td>
                                         <td>Issued</td>
-                                        <td>John Doe</td>    
+                                        <td>{this.state.lic.issued}</td>    
                                         </tr>
                                         <tr>
                                         <td >Email</td>
                                         <td>{this.state.email}</td>
                                         <td>Expire</td>
-                                        <td>John Doe</td>    
+                                        <td>{this.state.lic.expires}</td>    
                                         </tr>
                                         <tr>
                                         <td >Phone</td>

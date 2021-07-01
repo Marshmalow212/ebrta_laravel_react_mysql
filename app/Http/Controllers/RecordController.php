@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Record;
 use App\Models\datainfo;
+use App\Models\licensedata;
 use App\Models\Userrequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,11 +13,18 @@ class RecordController extends Controller
 {
     //
     public function index($id){
-
+        $cdate = date('Y-m-d'); 
         $datarecord = Record::where('user_reg_id',$id)->get();
         $datainfo = datainfo::where('user_reg_id',$id)->get();
+        
+        $licdata = licensedata::where('user_reg_id',$id)->orderByDesc('rdate')->first();
+        $ltype = $licdata->ltype;
+        $vtype = $licdata->vtype;
+        $lictype = $vtype.'_'.$ltype;
+        $rdate = $licdata->rdate;
+        $licinfo = Record::where('user_reg_id',$id)->where('name',$lictype)->where('issued',$rdate)->where('expires','>',$cdate)->orderByDesc('issued')->first();
 
-        return response()->json(['message'=>'Data found','datar'=>$datarecord,'datai'=>$datainfo]);
+        return response()->json(['message'=>'Data found','datar'=>$datarecord,'datai'=>$datainfo,'lic'=>$licinfo,'date'=>$cdate]);
 
     }
 

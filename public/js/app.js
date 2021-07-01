@@ -5436,7 +5436,8 @@ var Dashboard = /*#__PURE__*/function (_Component) {
       alerting: false,
       edit: false,
       record: [],
-      info: []
+      info: [],
+      lic: {}
     };
     _this.fpath = uData.propic;
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
@@ -5462,14 +5463,17 @@ var Dashboard = /*#__PURE__*/function (_Component) {
       axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/urecord/' + this.state.id).then(function (res) {
         console.log(res.data.message); // console.log(res.data.datar);
         // console.log(res.data.datai);
+        // console.log(res.data.lic);
+        // console.log(res.data.date);
 
         _this2.setState({
           record: res.data.datar,
-          info: res.data.datai
-        });
+          info: res.data.datai,
+          lic: res.data.lic
+        }); // console.log(this.state.record);
+        // console.log(this.state.info);
+        // console.log(this.state.lic);
 
-        console.log(_this2.state.record);
-        console.log(_this2.state.info);
       });
     }
   }, {
@@ -5592,10 +5596,10 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                className: "col-sm-9 border-0 rounded",
+                className: "col-sm-9 border-0 rounded table-responsive",
                 id: "testbox",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
-                  className: "table table-borderless table-striped rounded text-light property-inline",
+                  className: "table table-sm table-borderless table-striped rounded text-light property-inline",
                   id: "tabletextcolor",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("thead", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
@@ -5617,7 +5621,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
                         children: "License"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-                        children: "John Doe"
+                        children: this.state.lic.name
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
@@ -5627,7 +5631,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
                         children: "Issued"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-                        children: "John Doe"
+                        children: this.state.lic.issued
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
@@ -5637,7 +5641,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
                         children: "Expire"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-                        children: "John Doe"
+                        children: this.state.lic.expires
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
