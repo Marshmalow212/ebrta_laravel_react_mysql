@@ -12,6 +12,7 @@ class Resform extends Component {
             ret:{},
             vdata:{},
             ldata:{},
+            resstat:null,
             msg:'Hello people',
             alert:false,
             formdata:new FormData()
@@ -41,6 +42,7 @@ class Resform extends Component {
             for(var i in this.state.vdata){
                 this.state.formdata.append(i,this.state.vdata[i]);
             }
+            
             console.log(this.state.formdata.get('file')); 
             
             axios.post('/api/updatereq',this.state.formdata).
@@ -71,6 +73,7 @@ class Resform extends Component {
             for(var i in this.state.ldata){
                 this.state.formdata.append(i,this.state.ldata[i]);
             }
+            
             console.log(this.state.formdata.get('file')); 
             
             axios.post('/api/updatereq',this.state.formdata).

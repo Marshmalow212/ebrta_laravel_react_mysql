@@ -2795,6 +2795,7 @@ var Resform = /*#__PURE__*/function (_Component) {
       ret: {},
       vdata: {},
       ldata: {},
+      resstat: null,
       msg: 'Hello people',
       alert: false,
       formdata: new FormData()
@@ -5466,11 +5467,18 @@ var Dashboard = /*#__PURE__*/function (_Component) {
         // console.log(res.data.lic);
         // console.log(res.data.date);
 
-        _this2.setState({
-          record: res.data.datar,
-          info: res.data.datai,
-          lic: res.data.lic
-        }); // console.log(this.state.record);
+        if (res.data.lic) {
+          _this2.setState({
+            record: res.data.datar,
+            info: res.data.datai,
+            lic: res.data.lic
+          });
+        } else {
+          _this2.setState({
+            record: res.data.datar,
+            info: res.data.datai
+          });
+        } // console.log(this.state.record);
         // console.log(this.state.info);
         // console.log(this.state.lic);
 

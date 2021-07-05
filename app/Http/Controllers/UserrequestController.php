@@ -20,6 +20,7 @@ class UserrequestController extends Controller
     }
 
     public function update(Request $req,$id){
+        $statusdata = $req->get('status');
         $data = Userrequest::find($id);
         $data->status = $req->get('status');
         $data->save();

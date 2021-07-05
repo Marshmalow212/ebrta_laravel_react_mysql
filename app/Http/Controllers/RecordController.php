@@ -18,11 +18,15 @@ class RecordController extends Controller
         $datainfo = datainfo::where('user_reg_id',$id)->get();
         
         $licdata = licensedata::where('user_reg_id',$id)->orderByDesc('rdate')->first();
-        $ltype = $licdata->ltype;
-        $vtype = $licdata->vtype;
-        $lictype = $vtype.'_'.$ltype;
-        $rdate = $licdata->rdate;
-        $licinfo = Record::where('user_reg_id',$id)->where('name',$lictype)->where('issued',$rdate)->where('expires','>',$cdate)->orderByDesc('issued')->first();
+        $licinfo = null;
+        if($licdata){
+            $litype = $licdata->ltype;
+        $vitype = $licdata->vtype;
+        $lictype = $vitype.'_'.$litype;
+        $regdate = $licdata->rdate;
+        $licinfo = Record::where('user_reg_id',$id)->where('name',$lictype)->where('issued',$regdate)->where('expires','>',$cdate)->orderByDesc('issued')->first();
+        }
+        
 
         return response()->json(['message'=>'Data found','datar'=>$datarecord,'datai'=>$datainfo,'lic'=>$licinfo,'date'=>$cdate]);
 

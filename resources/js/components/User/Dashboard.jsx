@@ -58,11 +58,21 @@ class Dashboard extends Component{
                 // console.log(res.data.datai);
                 // console.log(res.data.lic);
                 // console.log(res.data.date);
+                if(res.data.lic){
+                    
                 this.setState({ 
                     record:res.data.datar,
                     info:res.data.datai,
                     lic:res.data.lic
                   });
+                }
+                else{
+                    this.setState({ 
+                        record:res.data.datar,
+                        info:res.data.datai
+                      });
+
+                }
                 // console.log(this.state.record);
                 // console.log(this.state.info);
                 // console.log(this.state.lic);
