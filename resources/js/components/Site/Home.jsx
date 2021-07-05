@@ -73,9 +73,9 @@ class Home extends Component{
                         <ul className="h5 " >Services</ul>
 
                         
-                            <ul className="h6">Vehicle Registration</ul>
-                            <ul className="h6">License Registration</ul>
-                            <ul className="h6">Registration Renewal</ul>                            
+                            <ul className="h6"><a href="/vehiclereg" className="text-light" style={{textDecoration:'none'}}>Vehicle Registration</a></ul>
+                            <ul className="h6"><a href="/drivinglicense" className="text-light" style={{textDecoration:'none'}}>Driving License</a></ul>
+                            <ul className="h6"><a href="/renewal" className="text-light" style={{textDecoration:'none'}}>Renewal</a></ul>                          
 
                     
                     </div>
@@ -86,8 +86,8 @@ class Home extends Component{
                     </div>
                     <div className="col-sm-4 text-light justify-content-center">
                         
-                             <ul className="h6">About us</ul>
-                            <ul className="h6">Contacts</ul>
+                             <ul className="h6"><a href="/about" className="text-light" style={{textDecoration:'none'}}>About us</a></ul>
+                            <ul className="h6"><a href="/contact" className="text-light" style={{textDecoration:'none'}}>Contacts</a></ul>
                             <ul className="h6"><a href="http://www.brta.gov.bd/"  target="_blank" className="text-light" style={{textDecoration:'none'}}>BRTA</a></ul>
                             <ul className="h6"><a href="http://www.brtc.gov.bd/" target="_blank" className="text-light" style={{textDecoration:'none'}}>BRTC</a></ul>                            
 

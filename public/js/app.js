@@ -3560,13 +3560,34 @@ var Home = /*#__PURE__*/function (_Component) {
                   children: "Services"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
                   className: "h6",
-                  children: "Vehicle Registration"
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                    href: "/vehiclereg",
+                    className: "text-light",
+                    style: {
+                      textDecoration: 'none'
+                    },
+                    children: "Vehicle Registration"
+                  })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
                   className: "h6",
-                  children: "License Registration"
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                    href: "/drivinglicense",
+                    className: "text-light",
+                    style: {
+                      textDecoration: 'none'
+                    },
+                    children: "Driving License"
+                  })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
                   className: "h6",
-                  children: "Registration Renewal"
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                    href: "/renewal",
+                    className: "text-light",
+                    style: {
+                      textDecoration: 'none'
+                    },
+                    children: "Renewal"
+                  })
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
                 className: "col-sm-4 text-light justify-content-center",
@@ -3582,10 +3603,24 @@ var Home = /*#__PURE__*/function (_Component) {
                 className: "col-sm-4 text-light justify-content-center",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
                   className: "h6",
-                  children: "About us"
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                    href: "/about",
+                    className: "text-light",
+                    style: {
+                      textDecoration: 'none'
+                    },
+                    children: "About us"
+                  })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
                   className: "h6",
-                  children: "Contacts"
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                    href: "/contact",
+                    className: "text-light",
+                    style: {
+                      textDecoration: 'none'
+                    },
+                    children: "Contacts"
+                  })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
                   className: "h6",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
