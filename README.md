@@ -12,6 +12,12 @@ This is a prototype for vehicle and license registration system of BRTA. Here we
 > [Axios](https://github.com/axios/axios)
 > [Fontawsome](https://fontawesome.com/v5.15/icons?d=gallery&p=2)
 ***
+> ###  For this project to run, you must have installed nodejs with npm , php 8.x.x with composer.
+>> Make sure all of this included into the environment path so that you don't have to worry  
+>> intalling them locally 
+
+
+***
 ### `Instructions`
 > 1. Clone the repository 
 
