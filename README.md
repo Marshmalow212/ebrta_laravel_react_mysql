@@ -4,13 +4,21 @@ This is a prototype for vehicle and license registration system of BRTA. Here we
 ***
 ### `Tools & Technologies`
 > [VS Code](https://code.visualstudio.com/)
+> 
 > [Laravel 8](https://laravel.com/)
+> 
 > [php 8.x.x](https://www.php.net/)
+> 
 > [ReactJs](https://reactjs.org/)
+> 
 > [Bootstrap v4](https://getbootstrap.com/)
+> 
 > [Reactstrap](https://reactstrap.github.io/)
+> 
 > [Axios](https://github.com/axios/axios)
+> 
 > [Fontawsome](https://fontawesome.com/v5.15/icons?d=gallery&p=2)
+> 
 ***
 > ###  For this project to run, you must have installed nodejs with npm , php 8.x.x with composer.
 >> Make sure all of this included into the environment path so that you don't have to worry  
