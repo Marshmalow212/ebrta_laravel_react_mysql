@@ -1,4 +1,4 @@
-﻿# E-BRTC - Web Project
+# E-BRTC - Web Project
 
 This is a prototype for vehicle and license registration system of BRTA. Here we have demonstrated how we can make the portion of this civil service hassle free and faster. 
 ***
@@ -35,9 +35,13 @@ This is a prototype for vehicle and license registration system of BRTA. Here we
 
 	composer install && npm install
 
+**`Copy .env.example file and rename it .env`**
+
 > 3. Create database in mysql
 
 	Database Name : ebrta
+
+**`**Note: if you have SQlite installed`**
 
 > 4. Run migrations
 
@@ -61,6 +65,12 @@ This is a prototype for vehicle and license registration system of BRTA. Here we
 
 ****
 **`Note: You have to run php server and npm server at the same time`**
+
+***
+
+#### `Instructions related to SQlite`
+
+**Sorry! Please google it for now, I will include soon if I get the perfect procedure**
 
 
 	
