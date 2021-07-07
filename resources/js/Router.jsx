@@ -13,7 +13,7 @@ import Vreg from './components/Site/vreg';
 import Renewal from './components/Site/renewal';
 import Form from './components/Templates/Form';
 import Contact from './components/Site/Contact';
-import adminPanel from './components/Admin/Adminpanel';
+import Adminpanel from './components/Admin/Adminpanel';
 import adminDashboard from './components/Admin/Admindashboard';
 import About from './components/Site/About';
 import Resform from './components/Admin/responseform';
