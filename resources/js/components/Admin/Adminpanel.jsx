@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Component } from 'react';
 import LoginModal from "../User/LoginModal";
 import { Modal,ModalBody, ModalHeader, ModalFooter, Jumbotron,Form,Label,Input,Button,FormGroup} from "reactstrap";
-import Admindashboard from "./Admindashboard";
+import adminDashboard from "./Admindashboard";
 
 class Adminpanel extends Component {
     constructor(props) {
