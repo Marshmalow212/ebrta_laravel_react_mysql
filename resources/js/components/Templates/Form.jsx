@@ -65,6 +65,8 @@ class Form extends Component {
     
 
     datacol(e){
+        e.persist();
+        console.log(e.target.name+' '+e.target.value);
         if(this.state.regtype === 'veh'){
             this.setState(prevState=>({
                 vehdata:{
@@ -76,7 +78,7 @@ class Form extends Component {
             let targetname = e.target.name
             this.setState(prevState=>({
                 licdata: {
-                ...prevState.licdata,[targetname] : e.target.value}})); 
+                ...prevState.licdata,[e.target.name] : e.target.value}})); 
         }
              
         else if(this.state.regtype === 'ren'){
@@ -136,7 +138,7 @@ class Form extends Component {
 
     selectopt(e){
         e.preventDefault();
-        console.log(e.target.name+' '+e.target.value);
+        // console.log(e.target.name+' '+e.target.value);
         this.setState({ [e.target.name]:e.target.value  });
         if(e.target.value === 'ren'){
             axios.get('/api/urecord/'+this.state.id).

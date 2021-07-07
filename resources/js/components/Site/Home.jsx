@@ -11,10 +11,10 @@ class Home extends Component{
     constructor(props){
 
         super(props);
-        let stats = JSON.parse(localStorage.getItem("loginpage"));
+        // let stats = JSON.parse(localStorage.getItem("loginpage"));
 
         this.state={
-            isopen:stats.stat
+            // isopen:stats.stat
         };
         
         this.hA = this.hA.bind(this);
