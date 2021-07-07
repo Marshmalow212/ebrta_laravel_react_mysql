@@ -40,7 +40,7 @@ const Main = props =>(
         <Route exact path='/renewal' component={Renewal} ></Route>
         <Route exact path='/regform' component={Form} ></Route>
         <Route exact path='/Contact' component={Contact}></Route>
-        <Route exact path='/adminpanel' component={adminPanel}></Route>
+        <Route exact path='/adminpanel' component={Adminpanel}></Route>
         <Route exact path='/admindashboard' component={adminDashboard}></Route>
         <Route exact path='/about' component={About}></Route>
         <Route exact path='/responseform' component={Resform}></Route>
