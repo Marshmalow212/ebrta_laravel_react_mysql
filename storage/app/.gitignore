@@ -1,4 +1,3 @@
-*
-!storage/
-!public/
+public/img
+public/pdf/doc
 !.gitignore
