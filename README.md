@@ -1,4 +1,4 @@
-# E-BRTC - Web Project
+# E-BRTA - Web Project
 
 This is a prototype for vehicle and license registration system of BRTA. Here we have demonstrated how we can make the portion of this civil service hassle free and faster. 
 ***
